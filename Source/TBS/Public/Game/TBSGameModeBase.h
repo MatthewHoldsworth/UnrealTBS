@@ -13,7 +13,9 @@ UCLASS()
 class TBS_API ATBSGameModeBase : public AGameModeBase
 {
 	GENERATED_BODY()
+public:
 
+protected:
 
-	
+private:
 };
