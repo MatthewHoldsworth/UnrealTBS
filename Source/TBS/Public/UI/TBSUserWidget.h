@@ -6,6 +6,7 @@
 #include "Blueprint/UserWidget.h"
 #include "TBSUserWidget.generated.h"
 
+class UTBSWidgetController;
 /**
  * 
  */
@@ -13,5 +14,10 @@ UCLASS()
 class TBS_API UTBSUserWidget : public UUserWidget
 {
 	GENERATED_BODY()
+public:
 	
+protected:
+
+	UPROPERTY(EditDefaultsOnly)
+	TSubclassOf<UTBSWidgetController> ControllerClass;
 };
