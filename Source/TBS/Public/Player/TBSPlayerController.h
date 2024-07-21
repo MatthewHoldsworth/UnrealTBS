@@ -15,4 +15,9 @@ class TBS_API ATBSPlayerController : public APlayerController
 	GENERATED_BODY()
 public:
 	ATBSPlayerController();
+
+protected:
+
+	UPROPERTY(BlueprintReadWrite, Category="PlayerState")
+	bool bInCombat = false;
 };

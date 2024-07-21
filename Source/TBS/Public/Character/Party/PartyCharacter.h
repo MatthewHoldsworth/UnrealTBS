@@ -15,5 +15,9 @@ class TBS_API APartyCharacter : public ATBSCharacter
 	GENERATED_BODY()
 public:
 
+protected:
+
+	UPROPERTY(BlueprintReadWrite, Category="Movement and Rotation")
+	bool bFreeLock = false;
 	//TObjectPtr<>
 };
