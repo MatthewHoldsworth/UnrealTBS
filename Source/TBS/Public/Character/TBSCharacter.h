@@ -6,10 +6,11 @@
 #include "GameFramework/Character.h"
 #include "AbilitySystemInterface.h"
 #include "Attribute/TBSAttributeSet.h"
+#include "Interfaces/EntityInterface.h"
 #include "TBSCharacter.generated.h"
 
 UCLASS()
-class TBS_API ATBSCharacter : public ACharacter, public IAbilitySystemInterface
+class TBS_API ATBSCharacter : public ACharacter, public IAbilitySystemInterface, public IEntityInterface
 {
 	GENERATED_BODY()
 

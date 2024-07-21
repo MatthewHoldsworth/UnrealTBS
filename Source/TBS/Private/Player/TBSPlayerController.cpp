@@ -3,6 +3,8 @@
 
 #include "Player/TBSPlayerController.h"
 
+#include "Interfaces/EntityInterface.h"
+
 ATBSPlayerController::ATBSPlayerController()
 {
 	bShowMouseCursor = true;
@@ -10,4 +12,20 @@ ATBSPlayerController::ATBSPlayerController()
 	bEnableMouseOverEvents = true;
 	bLockLocation = false;
 	
+}
+
+AActor* ATBSPlayerController::GetEntityUnderCursor()
+{
+	FHitResult HitResult;
+	
+	if(GetHitResultUnderCursor(ECC_WorldDynamic,false,HitResult))
+	{
+		if(HitResult.GetActor()->Implements<UEntityInterface>())
+		{
+			return HitResult.GetActor();
+		}
+	}
+
+	
+	return nullptr;
 }

@@ -6,6 +6,7 @@
 #include "GameFramework/PlayerController.h"
 #include "TBSPlayerController.generated.h"
 
+class IEntityInterface;
 /**
  * 
  */
@@ -17,7 +18,10 @@ public:
 	ATBSPlayerController();
 
 protected:
+	UFUNCTION(BlueprintCallable)
+	AActor* GetEntityUnderCursor();
 
 	UPROPERTY(BlueprintReadWrite, Category="PlayerState")
 	bool bInCombat = false;
+
 };
