@@ -17,7 +17,7 @@ class TBS_API UTBSUserWidget : public UUserWidget
 public:
 	
 protected:
-
+	
 	UPROPERTY(EditDefaultsOnly)
-	TSubclassOf<UTBSWidgetController> ControllerClass;
+	TObjectPtr<UTBSWidgetController> ControllerClass;
 };

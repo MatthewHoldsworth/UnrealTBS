@@ -15,3 +15,8 @@ void UTBSAbilitySystemComponent::InitialiseCallbacks()
 	const TSubclassOf<UTBSAttributeSet> AttributeClass;
 	GetGameplayAttributeValueChangeDelegate(Cast<UTBSAttributeSet>(GetAttributeSet(AttributeClass))->GetHealthAttribute()).AddLambda([this](const FOnAttributeChangeData& Data){AttributeChanged.Broadcast("Health", 1.0f,1.0f);});
 }
+
+void UTBSAbilitySystemComponent::BroadcastInitialValues()
+{
+	
+}

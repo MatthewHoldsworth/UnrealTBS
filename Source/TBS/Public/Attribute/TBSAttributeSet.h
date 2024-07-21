@@ -13,6 +13,8 @@ GAMEPLAYATTRIBUTE_VALUE_GETTER(PropertyName) \
 GAMEPLAYATTRIBUTE_VALUE_SETTER(PropertyName) \
 GAMEPLAYATTRIBUTE_VALUE_INITTER(PropertyName)
 
+DECLARE_DELEGATE_RetVal(FGameplayAttribute, FAttributeSignature);
+
 /**
  * 
  */
@@ -23,6 +25,8 @@ class TBS_API UTBSAttributeSet : public UAttributeSet
 
 public:
 	UTBSAttributeSet();
+
+	TMap<FGameplayTag, FAttributeSignature> TagsToAttributes;
 	
 	UPROPERTY(BlueprintReadOnly)
 	FGameplayAttributeData Strength;
@@ -61,6 +65,10 @@ public:
 	TBS_ATTRIBUTE_ACCESSORS(UTBSAttributeSet, MaxMana);
 	
 	UPROPERTY(BlueprintReadOnly)
+	FGameplayAttributeData MaxMovementPoints;
+	TBS_ATTRIBUTE_ACCESSORS(UTBSAttributeSet, MaxMovementPoints);
+	
+	UPROPERTY(BlueprintReadOnly)
 	FGameplayAttributeData Health;
 	TBS_ATTRIBUTE_ACCESSORS(UTBSAttributeSet, Health);
 	
@@ -71,4 +79,8 @@ public:
 	UPROPERTY(BlueprintReadOnly)
 	FGameplayAttributeData Mana;
 	TBS_ATTRIBUTE_ACCESSORS(UTBSAttributeSet, Mana);
+	
+	UPROPERTY(BlueprintReadOnly)
+	FGameplayAttributeData MovementPoints;
+	TBS_ATTRIBUTE_ACCESSORS(UTBSAttributeSet, MovementPoints);
 };

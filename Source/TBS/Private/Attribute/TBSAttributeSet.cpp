@@ -3,6 +3,8 @@
 
 #include "Attribute/TBSAttributeSet.h"
 
+#include "TBSGameplayTags.h"
+
 UTBSAttributeSet::UTBSAttributeSet()
 {
 	// Strength = 10.f;
@@ -11,4 +13,10 @@ UTBSAttributeSet::UTBSAttributeSet()
 	// Intelligence = 10.f;
 	// Wisdom = 10.f;
 	// Charisma = 10.f;
+
+	const FTBSGameplayTags GameplayTags = FTBSGameplayTags::Get();
+
+	FAttributeSignature StrengthDelegate;
+	StrengthDelegate.BindStatic(GetStrengthAttribute);
+	TagsToAttributes.Add(GameplayTags.Attributes_Primary_Strength, StrengthDelegate);
 }

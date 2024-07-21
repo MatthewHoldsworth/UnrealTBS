@@ -25,4 +25,8 @@ public:
 
 	UFUNCTION(BlueprintCallable, Category="Attributes")
 	void InitialiseCallbacks();
+	
+	UFUNCTION(BlueprintCallable, Category="Attributes")
+	void BroadcastInitialValues();
+	
 };

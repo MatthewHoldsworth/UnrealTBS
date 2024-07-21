@@ -8,5 +8,6 @@ ATBSPlayerController::ATBSPlayerController()
 	bShowMouseCursor = true;
 	bEnableClickEvents = true;
 	bEnableMouseOverEvents = true;
+	bLockLocation = false;
 	
 }
