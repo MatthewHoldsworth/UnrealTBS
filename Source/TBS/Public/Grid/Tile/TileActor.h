@@ -6,6 +6,7 @@
 #include "Actors/TBSActor.h"
 #include "TileActor.generated.h"
 
+class ATBSCharacter;
 /**
  * 
  */
@@ -15,6 +16,9 @@ class TBS_API ATileActor : public ATBSActor
 	GENERATED_BODY()
 public:
 	ATileActor();
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	TObjectPtr<ATBSCharacter> Occupant;
 protected:
 	
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)

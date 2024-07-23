@@ -3,6 +3,7 @@
 
 #include "Player/TBSPlayerController.h"
 
+#include "Character/TBSCharacter.h"
 #include "Interfaces/EntityInterface.h"
 
 ATBSPlayerController::ATBSPlayerController()
@@ -22,6 +23,7 @@ AActor* ATBSPlayerController::GetEntityUnderCursor()
 	{
 		if(HitResult.GetActor()->Implements<UEntityInterface>())
 		{
+			OnEntitySelected.Broadcast(Cast<ATBSCharacter>(HitResult.GetActor()));
 			return HitResult.GetActor();
 		}
 	}

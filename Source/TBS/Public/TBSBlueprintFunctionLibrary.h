@@ -6,12 +6,16 @@
 #include "Kismet/BlueprintFunctionLibrary.h"
 #include "TBSBlueprintFunctionLibrary.generated.h"
 
+class UTBSWidgetController;
 /**
  * 
  */
 UCLASS()
 class TBS_API UTBSBlueprintFunctionLibrary : public UBlueprintFunctionLibrary
 {
-	GENERATED_BODY()
-	
+		GENERATED_BODY()
+public:
+
+	UFUNCTION(BlueprintCallable, Category="UI")
+	static UTBSWidgetController* GetWidgetController(UUserWidget* ControlledWidget);
 };

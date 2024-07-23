@@ -3,15 +3,20 @@
 #pragma once
 
 #include "CoreMinimal.h"
-#include "UObject/NoExportTypes.h"
 #include "TBSWidgetController.generated.h"
 
+class UTBSUserWidget;
 /**
  * 
  */
-UCLASS()
+UCLASS(BlueprintType)
 class TBS_API UTBSWidgetController : public UObject
 {
 	GENERATED_BODY()
-	
+public:
+
+protected:
+
+	UPROPERTY(BlueprintReadWrite)
+	TObjectPtr<UTBSUserWidget> ControlledWidget;
 };
