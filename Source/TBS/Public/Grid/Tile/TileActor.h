@@ -19,6 +19,9 @@ public:
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	TObjectPtr<ATBSCharacter> Occupant;
+	
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	TMap<TObjectPtr<ATileActor>, int32> Neighbours;
 protected:
 	
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)

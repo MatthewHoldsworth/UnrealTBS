@@ -16,7 +16,15 @@ UTBSAttributeSet::UTBSAttributeSet()
 
 	const FTBSGameplayTags GameplayTags = FTBSGameplayTags::Get();
 
-	FAttributeSignature StrengthDelegate;
-	StrengthDelegate.BindStatic(GetStrengthAttribute);
-	TagsToAttributes.Add(GameplayTags.Attributes_Primary_Strength, StrengthDelegate);
+	TagsToAttributes.Add(GameplayTags.Attributes_Primary_Strength, GetStrengthAttribute);
+
+	TagsToAttributes.Add(GameplayTags.Attributes_Primary_Dexterity, GetDexterityAttribute);
+
+	TagsToAttributes.Add(GameplayTags.Attributes_Primary_Constitution, GetConstitutionAttribute);
+
+	TagsToAttributes.Add(GameplayTags.Attributes_Primary_Intelligence, GetIntelligenceAttribute);
+
+	TagsToAttributes.Add(GameplayTags.Attributes_Primary_Wisdom, GetWisdomAttribute);
+
+	TagsToAttributes.Add(GameplayTags.Attributes_Primary_Charisma, GetCharismaAttribute);
 }

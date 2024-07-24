@@ -15,6 +15,28 @@ GAMEPLAYATTRIBUTE_VALUE_INITTER(PropertyName)
 
 DECLARE_DELEGATE_RetVal(FGameplayAttribute, FAttributeSignature);
 
+
+USTRUCT(BlueprintType)
+struct FTBSAttributeInfo
+{
+	GENERATED_BODY()
+
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly)
+	FGameplayTag AttributeTag = FGameplayTag();
+
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly)
+	FText AttributeName = FText();
+
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly)
+	FText AttributeDescription = FText();
+
+	UPROPERTY(BlueprintReadOnly)
+	float AttributeValue = 0.f;
+};
+
+template<class T>
+using TStaticFuncPtr = typename TBaseStaticDelegateInstance<T, FDefaultDelegateUserPolicy>::FFuncPtr;
+
 /**
  * 
  */
@@ -26,7 +48,7 @@ class TBS_API UTBSAttributeSet : public UAttributeSet
 public:
 	UTBSAttributeSet();
 
-	TMap<FGameplayTag, FAttributeSignature> TagsToAttributes;
+	TMap<FGameplayTag, TStaticFuncPtr<FGameplayAttribute()>> TagsToAttributes;
 	
 	UPROPERTY(BlueprintReadOnly)
 	FGameplayAttributeData Strength;
