@@ -9,6 +9,8 @@
 #include "Interfaces/EntityInterface.h"
 #include "TBSCharacter.generated.h"
 
+class UWidgetComponent;
+
 UCLASS()
 class TBS_API ATBSCharacter : public ACharacter, public IAbilitySystemInterface, public IEntityInterface
 {
@@ -21,8 +23,11 @@ public:
 	virtual UAbilitySystemComponent* GetAbilitySystemComponent() const override;
 
 protected:
-	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly)
 	TObjectPtr<UAbilitySystemComponent> AbilitySystemComponent;
+	
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
+	TObjectPtr<UWidgetComponent> WidgetComponent;
 
 	//TSubclassOf<UAbilitySystemComponent> AbilitySystemComponent;
 

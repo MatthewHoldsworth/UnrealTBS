@@ -25,7 +25,7 @@ struct FTBSAttributeInfo
 	FGameplayTag AttributeTag = FGameplayTag();
 
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly)
-	FText AttributeName = FText();
+	FName AttributeName = FName();
 
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly)
 	FText AttributeDescription = FText();

@@ -28,18 +28,18 @@ public:
 
 	UFUNCTION(BlueprintCallable)
 	void InitGrid();
-protected:
-	UPROPERTY(EditDefaultsOnly)
-	TObjectPtr<USphereComponent> DebugSphere;
-private:
-	UPROPERTY(VisibleAnywhere)
-	TMap<FIntVector2, TObjectPtr<ATileActor>> TileMap;
-
+	
 	UPROPERTY(EditDefaultsOnly, Category="Grid Properties")
 	int GridX;
 
 	UPROPERTY(EditDefaultsOnly, Category="Grid Properties")
 	int GridY;
+protected:
+	UPROPERTY(EditDefaultsOnly)
+	TObjectPtr<USphereComponent> DebugSphere;
+private:
+	UPROPERTY(VisibleAnywhere)
+	TMap<FIntVector, TObjectPtr<ATileActor>> TileMap;
 	
 	UPROPERTY(EditDefaultsOnly, Category="Grid Properties")
 	TSubclassOf<ATileActor> TileClass;

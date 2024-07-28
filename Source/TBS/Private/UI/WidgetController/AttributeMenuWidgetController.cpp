@@ -12,16 +12,42 @@ UAttributeMenuWidgetController::UAttributeMenuWidgetController()
 
 void UAttributeMenuWidgetController::InitialiseCallbacks(UTBSAbilitySystemComponent* AbilitySystemComponent)
 {
-	const UTBSAttributeSet* AS = Cast<UTBSAttributeSet>(AbilitySystemComponent->GetAttributeSet(UTBSAttributeSet::StaticClass()));
-	for(auto& it : AS->TagsToAttributes)
+	const UTBSAttributeSet* AttributeSet = Cast<UTBSAttributeSet>(AbilitySystemComponent->GetAttributeSet(UTBSAttributeSet::StaticClass()));
+	for(auto& It : AttributeSet->TagsToAttributes)
 	{
-		AbilitySystemComponent->GetGameplayAttributeValueChangeDelegate(it.Value()).AddLambda([this, it](const FOnAttributeChangeData& Data)
+		AbilitySystemComponent->GetGameplayAttributeValueChangeDelegate(It.Value()).AddLambda([this, It, AttributeSet](const FOnAttributeChangeData& Data)
 		{
-			FTBSAttributeInfo info;
-			info.AttributeTag = it.Key;
-			info.AttributeValue = 5.0f;
-			AttributeInfoDelegate.Broadcast(info);
+			Broadcast(It.Key, It.Value(), AttributeSet);
+			//FTBSAttributeInfo info;
+			//info.AttributeTag = it.Key;
+			//info.AttributeName = FName(Data.Attribute.GetName());
+			//info.AttributeValue = Data.NewValue;
+			//AttributeInfoDelegate.Broadcast(info);
 		});
-		GEngine->AddOnScreenDebugMessage(-1, 15.0f, FColor::Yellow, it.Key.GetTagName().ToString());	
+		//GEngine->AddOnScreenDebugMessage(-1, 15.0f, FColor::Yellow, it.Key.GetTagName().ToString());	
 	}
+}
+
+void UAttributeMenuWidgetController::InitialBroadcast(UTBSAbilitySystemComponent* AbilitySystemComponent)
+{
+	const UTBSAttributeSet* AttributeSet = Cast<UTBSAttributeSet>(AbilitySystemComponent->GetAttributeSet(UTBSAttributeSet::StaticClass()));
+	for(auto& It : AttributeSet->TagsToAttributes)
+	{
+		Broadcast(It.Key, It.Value(), AttributeSet);
+		// FTBSAttributeInfo info;
+		// info.AttributeTag = it.Key;
+		// info.AttributeValue = it.Value().GetNumericValue(AS);
+		// AttributeInfoDelegate.Broadcast(info);
+	}
+}
+
+void UAttributeMenuWidgetController::Broadcast(const FGameplayTag& Tag, const FGameplayAttribute& Attribute, const UTBSAttributeSet* AttributeSet) const
+{
+	FTBSAttributeInfo Info;
+	Info.AttributeTag = Tag;
+	Info.AttributeName = FName(Attribute.AttributeName);//Tag.GetTagName();
+	Info.AttributeValue = Attribute.GetNumericValue(AttributeSet);
+	//GEngine->AddOnScreenDebugMessage(-1, 15.0f, FColor::Red, Info.AttributeName);	
+	//GEngine->AddOnScreenDebugMessage(-1, 15.0f, FColor::Blue, "HEKLLAODOASD");	
+	AttributeInfoDelegate.Broadcast(Info);
 }

@@ -6,6 +6,9 @@
 #include "UI/WidgetController/TBSWidgetController.h"
 #include "AttributeMenuWidgetController.generated.h"
 
+class UTBSAttributeSet;
+struct FGameplayAttribute;
+struct FGameplayTag;
 class UTBSAbilitySystemComponent;
 struct FTBSAttributeInfo;
 
@@ -27,4 +30,12 @@ public:
 	
 	UFUNCTION(BlueprintCallable)
 	void InitialiseCallbacks(UTBSAbilitySystemComponent* AbilitySystemComponent);
+	
+	UFUNCTION(BlueprintCallable)
+	void InitialBroadcast(UTBSAbilitySystemComponent* AbilitySystemComponent);
+
+	void Broadcast(const FGameplayTag& Tag, const FGameplayAttribute& Attribute, const UTBSAttributeSet*) const;
+
+protected:
+	//const UTBSAttributeSet* AS;
 };

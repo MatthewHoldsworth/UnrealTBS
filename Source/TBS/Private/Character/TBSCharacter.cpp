@@ -4,12 +4,15 @@
 #include "Character/TBSCharacter.h"
 
 #include "Attribute/TBSAbilitySystemComponent.h"
+#include "Components/WidgetComponent.h"
 
 // Sets default values
 ATBSCharacter::ATBSCharacter()
 {
 	AbilitySystemComponent = CreateDefaultSubobject<UTBSAbilitySystemComponent>("AbilitySystem");
  	AttributeSet = CreateDefaultSubobject<UTBSAttributeSet>("AttributeSet");
+	WidgetComponent = CreateDefaultSubobject<UWidgetComponent>("WidgetComponent");
+	WidgetComponent->SetWidgetSpace(EWidgetSpace::Screen);
 }
 
 UAbilitySystemComponent* ATBSCharacter::GetAbilitySystemComponent() const

@@ -26,8 +26,4 @@ public:
 protected:
 	UFUNCTION(BlueprintCallable)
 	AActor* GetEntityUnderCursor();
-
-	UPROPERTY(BlueprintReadWrite, Category="PlayerState")
-	bool bInCombat = false;
-
 };

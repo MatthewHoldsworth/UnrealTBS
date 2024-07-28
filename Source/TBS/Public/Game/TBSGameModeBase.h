@@ -6,6 +6,7 @@
 #include "GameFramework/GameModeBase.h"
 #include "TBSGameModeBase.generated.h"
 
+class AGridManager;
 /**
  * 
  */
@@ -14,8 +15,14 @@ class TBS_API ATBSGameModeBase : public AGameModeBase
 {
 	GENERATED_BODY()
 public:
-
+	
+	
 protected:
 
+	UFUNCTION(BlueprintCallable)
+	void InitialiseGame();
+	
+	UPROPERTY(BlueprintReadOnly)
+	TObjectPtr<AGridManager> GridManager;
 private:
 };

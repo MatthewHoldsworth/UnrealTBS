@@ -6,6 +6,8 @@
 #include "Kismet/BlueprintFunctionLibrary.h"
 #include "TBSBlueprintFunctionLibrary.generated.h"
 
+class AGridManager;
+class ATileActor;
 class UTBSWidgetController;
 /**
  * 
@@ -18,4 +20,10 @@ public:
 
 	UFUNCTION(BlueprintCallable, Category="UI")
 	static UTBSWidgetController* GetWidgetController(UUserWidget* ControlledWidget);
+	
+	UFUNCTION(BlueprintCallable, Category="Grid")
+	static ATileActor* GetTileAt(FIntVector Vector);
+
+	UFUNCTION(BlueprintCallable, Category="Grid")
+	static AGridManager* GetGridManager();
 };
