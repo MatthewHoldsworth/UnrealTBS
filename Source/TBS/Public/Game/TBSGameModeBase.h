@@ -15,14 +15,15 @@ class TBS_API ATBSGameModeBase : public AGameModeBase
 {
 	GENERATED_BODY()
 public:
+	ATBSGameModeBase();
 	
 	
+	UPROPERTY(BlueprintReadOnly)
+	TObjectPtr<AGridManager> GridManager;
 protected:
 
 	UFUNCTION(BlueprintCallable)
 	void InitialiseGame();
 	
-	UPROPERTY(BlueprintReadOnly)
-	TObjectPtr<AGridManager> GridManager;
 private:
 };

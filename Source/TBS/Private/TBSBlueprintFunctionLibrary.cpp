@@ -3,7 +3,11 @@
 
 #include "TBSBlueprintFunctionLibrary.h"
 
+#include "Game/TBSGameModeBase.h"
+#include "Game/TBSGameStateBase.h"
+#include "GameFramework/GameModeBase.h"
 #include "Grid/Tile/TileActor.h"
+#include "Kismet/GameplayStatics.h"
 #include "UI/TBSUserWidget.h"
 
 UTBSWidgetController* UTBSBlueprintFunctionLibrary::GetWidgetController(UUserWidget* ControlledWidget)
@@ -16,7 +20,7 @@ ATileActor* UTBSBlueprintFunctionLibrary::GetTileAt(FIntVector Vector)
 	return nullptr;
 }
 
-AGridManager* UTBSBlueprintFunctionLibrary::GetGridManager()
+AGridManager* UTBSBlueprintFunctionLibrary::GetGridManager(UObject* WorldObject)
 {
-	return nullptr;
+	return Cast<ATBSGameModeBase>(UGameplayStatics::GetGameMode(WorldObject))->GridManager;
 }

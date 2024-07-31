@@ -4,6 +4,14 @@
 #include "Game/TBSGameModeBase.h"
 
 #include "Grid/GridManager.h"
+#include "Kismet/GameplayStatics.h"
+
+ATBSGameModeBase::ATBSGameModeBase()
+{
+	TArray<AActor*> FoundActors;
+	UGameplayStatics::GetAllActorsOfClass(GetWorld(), AGridManager::StaticClass(), FoundActors);
+	GridManager = Cast<AGridManager>(UGameplayStatics::GetActorOfClass(GetWorld(), AGridManager::StaticClass()));
+}
 
 void ATBSGameModeBase::InitialiseGame()
 {

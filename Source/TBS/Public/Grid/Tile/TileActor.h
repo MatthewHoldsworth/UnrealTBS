@@ -22,6 +22,9 @@ public:
 	
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	TMap<TObjectPtr<ATileActor>, int32> Neighbours;
+
+	UFUNCTION(BlueprintCallable)
+	bool SetOccupant(ATBSCharacter* NewOccupant);
 protected:
 	
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)

@@ -28,6 +28,9 @@ public:
 
 	UFUNCTION(BlueprintCallable)
 	void InitGrid();
+
+	UFUNCTION(BlueprintCallable)
+	ATileActor* TileAt(int X, int Y);
 	
 	UPROPERTY(EditDefaultsOnly, Category="Grid Properties")
 	int GridX;
@@ -38,6 +41,9 @@ protected:
 	UPROPERTY(EditDefaultsOnly)
 	TObjectPtr<USphereComponent> DebugSphere;
 private:
+	int GridOffsetValueX = 0;
+	int GridOffsetValueY = 0;
+	
 	UPROPERTY(VisibleAnywhere)
 	TMap<FIntVector, TObjectPtr<ATileActor>> TileMap;
 	

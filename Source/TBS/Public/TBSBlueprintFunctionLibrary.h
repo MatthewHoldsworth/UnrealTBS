@@ -6,6 +6,7 @@
 #include "Kismet/BlueprintFunctionLibrary.h"
 #include "TBSBlueprintFunctionLibrary.generated.h"
 
+class ATBSGameStateBase;
 class AGridManager;
 class ATileActor;
 class UTBSWidgetController;
@@ -24,6 +25,6 @@ public:
 	UFUNCTION(BlueprintCallable, Category="Grid")
 	static ATileActor* GetTileAt(FIntVector Vector);
 
-	UFUNCTION(BlueprintCallable, Category="Grid")
-	static AGridManager* GetGridManager();
+	UFUNCTION(BlueprintCallable, BlueprintPure, Category="Grid")
+	static AGridManager* GetGridManager(UObject* WorldObject);
 };
