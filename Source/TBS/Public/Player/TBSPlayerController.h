@@ -6,9 +6,11 @@
 #include "GameFramework/PlayerController.h"
 #include "TBSPlayerController.generated.h"
 
+class ATileActor;
 class ATBSCharacter;
 
 DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FOnEntitySelected, ATBSCharacter*, Entity);
+DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FOnTileSelected, ATileActor*, Entity);
 
 class IEntityInterface;
 /**
@@ -23,7 +25,12 @@ public:
 	
 	UPROPERTY(BlueprintAssignable, Category="Attributes")
 	FOnEntitySelected OnEntitySelected;
+	UPROPERTY(BlueprintAssignable, Category="Attributes")
+	FOnTileSelected OnTileSelected;
 protected:
 	UFUNCTION(BlueprintCallable)
 	AActor* GetEntityUnderCursor();
+	
+	UFUNCTION(BlueprintCallable)
+	ATileActor* GetTileUnderCursor();
 };

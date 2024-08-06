@@ -26,11 +26,15 @@ void AGridManager::InitGrid()
 	{
 		for(int j =0; j < GridX; j++)
 		{
-			SpawnParameters.Name = ("TileActor_" + std::to_string(j - CentreOffsetY) + '_' + std::to_string(i - CentreOffsetX)).c_str();
+			FName SpawnName = FName(("Tile_" + std::to_string(j) + '_' + std::to_string(i)).c_str());
+			SpawnParameters.Name = SpawnName;
 			FVector SpawnVector = FVector((i - CentreOffsetX) * 100.0f, (j - CentreOffsetY) * 100.0f, 0.0f);
 			TileMap.Add( FIntVector(i- CentreOffsetX, j- CentreOffsetY, 0),GetWorld()->SpawnActor<ATileActor>(TileClass, SpawnVector,FRotator(), SpawnParameters));
+			TileMap.Find(FIntVector(i- CentreOffsetX, j- CentreOffsetY, 0))->Get()->SetActorLabel(SpawnName.ToString());
 		}
 	}
+
+	GenerateTileMapNeighbours();
 }
 
 ATileActor* AGridManager::TileAt(int X, int Y)
@@ -38,4 +42,16 @@ ATileActor* AGridManager::TileAt(int X, int Y)
 	return *TileMap.Find(FIntVector(X, Y,0));
 }
 
+TArray<ATileActor*> AGridManager::GetTilesInRange(ATileActor* Origin, int Range)
+{
+	
+	return TArray<ATileActor*>();
+}
 
+void AGridManager::GenerateTileMapNeighbours()
+{
+	for (const auto Element : TileMap)
+	{
+		Element.Value->GenerateNeighbours();
+	}
+}

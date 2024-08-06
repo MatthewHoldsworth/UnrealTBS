@@ -18,14 +18,17 @@ public:
 	ATileActor();
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
-	TObjectPtr<ATBSCharacter> Occupant;
-	
-	UPROPERTY(EditAnywhere, BlueprintReadWrite)
-	TMap<TObjectPtr<ATileActor>, int32> Neighbours;
+	TArray<TObjectPtr<ATileActor>> Neighbours;
 
 	UFUNCTION(BlueprintCallable)
 	bool SetOccupant(ATBSCharacter* NewOccupant);
+
+	UFUNCTION(BlueprintCallable)
+	void GenerateNeighbours();
 protected:
+	
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	TObjectPtr<ATBSCharacter> Occupant;
 	
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	TObjectPtr<UStaticMeshComponent> CubeComponent;

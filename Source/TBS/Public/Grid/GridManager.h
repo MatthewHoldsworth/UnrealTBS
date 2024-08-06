@@ -31,6 +31,9 @@ public:
 
 	UFUNCTION(BlueprintCallable)
 	ATileActor* TileAt(int X, int Y);
+
+	UFUNCTION(BlueprintCallable)
+	TArray<ATileActor*> GetTilesInRange(ATileActor* Origin, int Range);
 	
 	UPROPERTY(EditDefaultsOnly, Category="Grid Properties")
 	int GridX;
@@ -40,6 +43,9 @@ public:
 protected:
 	UPROPERTY(EditDefaultsOnly)
 	TObjectPtr<USphereComponent> DebugSphere;
+	
+	UFUNCTION(BlueprintCallable)
+	void GenerateTileMapNeighbours();
 private:
 	int GridOffsetValueX = 0;
 	int GridOffsetValueY = 0;
