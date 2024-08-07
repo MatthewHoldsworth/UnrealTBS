@@ -20,11 +20,17 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	TArray<TObjectPtr<ATileActor>> Neighbours;
 
+	UPROPERTY(BlueprintReadOnly)
+	float Distance;
+
 	UFUNCTION(BlueprintCallable)
 	bool SetOccupant(ATBSCharacter* NewOccupant);
 
 	UFUNCTION(BlueprintCallable)
 	void GenerateNeighbours();
+
+	UFUNCTION(BlueprintImplementableEvent)
+	void Highlight();
 protected:
 	
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)

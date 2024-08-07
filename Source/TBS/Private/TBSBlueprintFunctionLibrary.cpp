@@ -24,3 +24,14 @@ AGridManager* UTBSBlueprintFunctionLibrary::GetGridManager(UObject* WorldObject)
 {
 	return Cast<ATBSGameModeBase>(UGameplayStatics::GetGameMode(WorldObject))->GridManager;
 }
+
+FIntVector UTBSBlueprintFunctionLibrary::WorldToGridCoordinates(FVector Location)
+{
+	//roundf()
+	return FIntVector(roundf(Location.X*0.01f),roundf(Location.Y*0.01f),0.0f);
+}
+
+FVector UTBSBlueprintFunctionLibrary::GridToWorldCoordinates(FIntVector Position)
+{
+	return FVector(Position.X * 100.0f, Position.Y * 100.0f, Position.Z * 100.0f);
+}

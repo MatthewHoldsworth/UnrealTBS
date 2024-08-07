@@ -27,4 +27,10 @@ public:
 
 	UFUNCTION(BlueprintCallable, BlueprintPure, Category="Grid")
 	static AGridManager* GetGridManager(UObject* WorldObject);
+
+	UFUNCTION(BlueprintCallable, BlueprintPure, Category="Grid")
+	static FIntVector WorldToGridCoordinates(FVector Location);
+
+	UFUNCTION(BlueprintCallable, BlueprintPure, Category="Grid")
+	static FVector GridToWorldCoordinates(FIntVector Position);
 };

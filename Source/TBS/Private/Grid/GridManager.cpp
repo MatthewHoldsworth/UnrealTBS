@@ -44,10 +44,103 @@ ATileActor* AGridManager::TileAt(int X, int Y)
 
 TArray<ATileActor*> AGridManager::GetTilesInRange(ATileActor* Origin, int Range)
 {
-	
-	return TArray<ATileActor*>();
+	int Iteration = Range;
+	TArray<ATileActor*> Total =Origin->Neighbours;
+	Total.Add(Origin);
+	TArray<ATileActor*> Completed;// = TArray<ATileActor*>();
+	ATileActor* Head;
+
+	while (Range > 0)
+	{
+		while (Total.Num() > 0)
+		{
+			Head = Total[0];
+			Head->Highlight();
+			if (!Completed.Contains(Head))
+			{
+				Head->Distance = 1000.0f;//float.MaxValue;
+				Completed.Add(Head);
+			}
+			Total.RemoveAt(0);
+		}
+		for (const auto& It : Completed)
+		{
+			for (auto& Jt : It->Neighbours)
+			{
+				if (!Total.Contains(Jt) && !Completed.Contains(Jt))
+				{
+					//jt->Highlight();
+					Total.Add(Jt);
+				}
+			}
+		}
+		Range--;
+	}
+	UE_LOG(LogTemp, Warning, TEXT("Get Tiles in Range iterations: %d"), Iteration);
+	return Completed;
+	//return TArray<ATileActor*>();
+}
+/*
+public List<TileD> CalculatePath(TileD Start, TileD Goal)
+{
+	List<TileD> path = new List<TileD>();
+	if (Goal.Neighbours.Count == 0)
+		return null;
+	path.Add(Goal);
+	float shortestDist = float.MaxValue;
+	TileD closestTile = path[path.Count - 1].Neighbours[0];
+	//foreach (TileD n in path[path.Count - 1].Neighbours)
+	//{
+	//    if (n.distance == -1f)
+	//    {
+
+	//    }
+	//    else if (n.distance < shortestDist && !path.Contains(n))
+	//    {
+	//        shortestDist = n.distance;
+	//        closestTile = n;
+	//    }
+	//}
+	int count =1;
+	Debug.Log("Dijkstra iteration: " + count);
+	while (!path[path.Count-1].Neighbours.Contains(Start))
+	{
+		foreach (TileD n in path[path.Count - 1].Neighbours)
+		{
+			if (n.distance == -1f)
+			{
+
+			}
+			else if (n.distance < shortestDist && !path.Contains(n))
+			{
+				shortestDist = n.distance;
+				closestTile = n;
+			}
+		}
+		path.Add(closestTile);
+		count++;
+		Debug.Log("Dijkstra iteration: " + count);
+	}
+	path.Reverse();
+	return path;
 }
 
+public void CalculateDistances(TileD Start)
+{
+	List<TileD> ToDo = new List<TileD>(TilesInRange);
+	Start.distance = 0;
+
+	while (ToDo.Count > 0)
+	{
+		foreach (TileD n in ToDo[0].Neighbours)
+		{
+			if (n.distance + 1 < ToDo[0].distance && n.distance != -1f)
+				ToDo[0].distance = n.distance + 1;
+		}
+		ToDo.RemoveAt(0);
+	}
+}
+*/
 void AGridManager::GenerateTileMapNeighbours()
 {
 	for (const auto Element : TileMap)
