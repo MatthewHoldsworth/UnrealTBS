@@ -9,7 +9,7 @@
 class ATileActor;
 class ATBSCharacter;
 
-DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FOnEntitySelected, ATBSCharacter*, Entity);
+DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FOnEntitySelected, TScriptInterface<IEntityInterface>, Entity);
 DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FOnTileSelected, ATileActor*, Entity);
 
 class IEntityInterface;
@@ -23,13 +23,18 @@ class TBS_API ATBSPlayerController : public APlayerController
 public:
 	ATBSPlayerController();
 	
-	UPROPERTY(BlueprintAssignable, Category="Attributes")
+	UPROPERTY(BlueprintAssignable)
 	FOnEntitySelected OnEntitySelected;
-	UPROPERTY(BlueprintAssignable, Category="Attributes")
+	UPROPERTY(BlueprintAssignable)
 	FOnTileSelected OnTileSelected;
+	
+	UPROPERTY(BlueprintReadWrite)
+	TScriptInterface<IEntityInterface> SelectedEntity;
+	UPROPERTY(BlueprintReadWrite)
+	TObjectPtr<ATileActor> SelectedTile;
 protected:
 	UFUNCTION(BlueprintCallable)
-	AActor* GetEntityUnderCursor();
+	TScriptInterface<IEntityInterface> GetEntityUnderCursor();
 	
 	UFUNCTION(BlueprintCallable)
 	ATileActor* GetTileUnderCursor();

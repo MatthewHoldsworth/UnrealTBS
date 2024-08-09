@@ -2,7 +2,7 @@
 
 
 #include "Grid/GridManager.h"
-
+#include "IntVectorTypes.h"
 #include "Components/SphereComponent.h"
 #include "Grid/Tile/TileActor.h"
 
@@ -77,9 +77,27 @@ TArray<ATileActor*> AGridManager::GetTilesInRange(ATileActor* Origin, int Range)
 		Range--;
 	}
 	UE_LOG(LogTemp, Warning, TEXT("Get Tiles in Range iterations: %d"), Iteration);
+	CalculateDistances(Origin, Completed);
 	return Completed;
 	//return TArray<ATileActor*>();
 }
+
+void AGridManager::CalculateDistances(ATileActor* Origin, TArray<ATileActor*> Tiles)
+{
+	TArray<ATileActor*> ToDo = TArray<ATileActor*>(Tiles);
+	Origin->Distance = 0;
+
+	while (ToDo.Num() > 0)
+	{
+		for (auto& it : ToDo[0]->Neighbours)
+		{
+			if (it->Distance + 1 < ToDo[0]->Distance && it->Distance != -1.0f)
+				ToDo[0]->Distance = it->Distance + 1.0f;
+		}
+		ToDo.RemoveAt(0);
+	}
+}
+
 /*
 public List<TileD> CalculatePath(TileD Start, TileD Goal)
 {
@@ -124,23 +142,8 @@ public List<TileD> CalculatePath(TileD Start, TileD Goal)
 	path.Reverse();
 	return path;
 }
-
-public void CalculateDistances(TileD Start)
-{
-	List<TileD> ToDo = new List<TileD>(TilesInRange);
-	Start.distance = 0;
-
-	while (ToDo.Count > 0)
-	{
-		foreach (TileD n in ToDo[0].Neighbours)
-		{
-			if (n.distance + 1 < ToDo[0].distance && n.distance != -1f)
-				ToDo[0].distance = n.distance + 1;
-		}
-		ToDo.RemoveAt(0);
-	}
-}
 */
+
 void AGridManager::GenerateTileMapNeighbours()
 {
 	for (const auto Element : TileMap)

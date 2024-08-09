@@ -20,8 +20,8 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	TArray<TObjectPtr<ATileActor>> Neighbours;
 
-	UPROPERTY(BlueprintReadOnly)
-	float Distance;
+	UPROPERTY(BlueprintReadOnly, VisibleAnywhere)
+	float Distance = -1.0f;
 
 	UFUNCTION(BlueprintCallable)
 	bool SetOccupant(ATBSCharacter* NewOccupant);

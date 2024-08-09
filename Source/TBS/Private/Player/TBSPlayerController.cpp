@@ -16,7 +16,7 @@ ATBSPlayerController::ATBSPlayerController()
 	
 }
 
-AActor* ATBSPlayerController::GetEntityUnderCursor()
+TScriptInterface<IEntityInterface> ATBSPlayerController::GetEntityUnderCursor()
 {
 	FHitResult HitResult;
 	
@@ -24,7 +24,7 @@ AActor* ATBSPlayerController::GetEntityUnderCursor()
 	{
 		if(HitResult.GetActor()->Implements<UEntityInterface>())
 		{
-			OnEntitySelected.Broadcast(Cast<ATBSCharacter>(HitResult.GetActor()));
+			OnEntitySelected.Broadcast(HitResult.GetActor());
 			return HitResult.GetActor();
 		}
 	}

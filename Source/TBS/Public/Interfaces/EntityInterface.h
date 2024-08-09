@@ -6,6 +6,7 @@
 #include "UObject/Interface.h"
 #include "EntityInterface.generated.h"
 
+class ATileActor;
 // This class does not need to be modified.
 UINTERFACE(MinimalAPI)
 class UEntityInterface : public UInterface
@@ -22,10 +23,15 @@ class TBS_API IEntityInterface
 
 	// Add interface functions to this class. This is the class that will be inherited to implement this interface.
 public:
+	virtual ATileActor* GetEntityLocation() const = 0;
+	virtual void SetEntityLocation(ATileActor* NewLocation) = 0;
 	
 	//UPROPERTY(BlueprintReadOnly, Category="Entity")
 	FName EntityName;
 	
 	//UPROPERTY(BlueprintReadOnly, Category="Entity")
 	FString EntityDescription;
+	
+	//UPROPERTY(BlueprintReadOnly, Category="Entity")
+	TObjectPtr<ATileActor> EntityLocation;
 };

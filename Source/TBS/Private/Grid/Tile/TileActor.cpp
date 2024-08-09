@@ -17,7 +17,7 @@ bool ATileActor::SetOccupant(ATBSCharacter* NewOccupant)
 	if(!Occupant)
 	{
 		Occupant = NewOccupant;
-		//NewOccupant->SetActorLocation(GetActorLocation() + FVector(0.0f,0.0f,100.0f));
+		NewOccupant->SetActorLocation(GetActorLocation() + FVector(0.0f,0.0f,100.0f));
 	}
 	return false;
 }

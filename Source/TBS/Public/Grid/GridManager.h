@@ -3,7 +3,6 @@
 #pragma once
 
 #include "CoreMinimal.h"
-#include "IntVectorTypes.h"
 #include "GameFramework/Actor.h"
 #include "GridManager.generated.h"
 
@@ -34,6 +33,12 @@ public:
 
 	UFUNCTION(BlueprintCallable)
 	TArray<ATileActor*> GetTilesInRange(ATileActor* Origin, int Range);
+
+	UPROPERTY(BlueprintReadWrite)
+	TArray<ATileActor*> TilesOfInterest;
+
+	UFUNCTION(BlueprintCallable)
+	void CalculateDistances(ATileActor* Origin, TArray<ATileActor*> Tiles);
 	
 	UPROPERTY(EditDefaultsOnly, Category="Grid Properties")
 	int GridX;

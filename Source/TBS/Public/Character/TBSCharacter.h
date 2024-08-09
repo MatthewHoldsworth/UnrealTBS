@@ -22,6 +22,11 @@ public:
 
 	virtual UAbilitySystemComponent* GetAbilitySystemComponent() const override;
 
+	UFUNCTION(BlueprintCallable)
+	virtual ATileActor* GetEntityLocation() const override;
+	UFUNCTION(BlueprintCallable)
+	virtual void SetEntityLocation(ATileActor* NewLocation) override;
+
 protected:
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly)
 	TObjectPtr<UAbilitySystemComponent> AbilitySystemComponent;

@@ -20,6 +20,16 @@ UAbilitySystemComponent* ATBSCharacter::GetAbilitySystemComponent() const
 	return AbilitySystemComponent;
 }
 
+ATileActor* ATBSCharacter::GetEntityLocation() const
+{
+	return EntityLocation;
+}
+
+void ATBSCharacter::SetEntityLocation(ATileActor* NewLocation)
+{
+	EntityLocation = NewLocation;
+}
+
 void ATBSCharacter::BeginPlay()
 {
 	Super::BeginPlay();
