@@ -32,6 +32,9 @@ public:
 	void InitialiseCallbacks(UTBSAbilitySystemComponent* AbilitySystemComponent);
 	
 	UFUNCTION(BlueprintCallable)
+	void ClearCallbacks(UTBSAbilitySystemComponent* AbilitySystemComponent);
+	
+	UFUNCTION(BlueprintCallable)
 	void InitialBroadcast(UTBSAbilitySystemComponent* AbilitySystemComponent);
 
 	void Broadcast(const FGameplayTag& Tag, const FGameplayAttribute& Attribute, const UTBSAttributeSet*) const;

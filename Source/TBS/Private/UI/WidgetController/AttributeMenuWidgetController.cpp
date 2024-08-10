@@ -24,6 +24,18 @@ void UAttributeMenuWidgetController::InitialiseCallbacks(UTBSAbilitySystemCompon
 			//info.AttributeValue = Data.NewValue;
 			//AttributeInfoDelegate.Broadcast(info);
 		});
+		
+		//AbilitySystemComponent->GetGameplayAttributeValueChangeDelegate(It.Value()).Clear();
+		//GEngine->AddOnScreenDebugMessage(-1, 15.0f, FColor::Yellow, it.Key.GetTagName().ToString());	
+	}
+}
+
+void UAttributeMenuWidgetController::ClearCallbacks(UTBSAbilitySystemComponent* AbilitySystemComponent)
+{
+	const UTBSAttributeSet* AttributeSet = Cast<UTBSAttributeSet>(AbilitySystemComponent->GetAttributeSet(UTBSAttributeSet::StaticClass()));
+	for(auto& It : AttributeSet->TagsToAttributes)
+	{
+		AbilitySystemComponent->GetGameplayAttributeValueChangeDelegate(It.Value()).Clear();
 		//GEngine->AddOnScreenDebugMessage(-1, 15.0f, FColor::Yellow, it.Key.GetTagName().ToString());	
 	}
 }
