@@ -9,7 +9,7 @@ class UTBSUserWidget;
 /**
  * 
  */
-UCLASS(BlueprintType)
+UCLASS(BlueprintType, Blueprintable)
 class TBS_API UTBSWidgetController : public UObject
 {
 	GENERATED_BODY()
