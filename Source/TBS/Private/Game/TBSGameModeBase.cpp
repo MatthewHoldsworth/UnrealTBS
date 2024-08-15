@@ -4,6 +4,7 @@
 #include "Game/TBSGameModeBase.h"
 
 #include "Grid/GridManager.h"
+#include "Grid/Tile/TileActor.h"
 #include "Kismet/GameplayStatics.h"
 
 ATBSGameModeBase::ATBSGameModeBase()
@@ -11,6 +12,15 @@ ATBSGameModeBase::ATBSGameModeBase()
 	TArray<AActor*> FoundActors;
 	UGameplayStatics::GetAllActorsOfClass(GetWorld(), AGridManager::StaticClass(), FoundActors);
 	GridManager = Cast<AGridManager>(UGameplayStatics::GetActorOfClass(GetWorld(), AGridManager::StaticClass()));
+}
+
+void ATBSGameModeBase::SetHighlightTiles(const TArray<ATileActor*> Tiles)
+{
+	for (const auto& It: HighlightedTiles)
+		It->UnHighlight();
+	HighlightedTiles = Tiles;
+	for (const auto& It: HighlightedTiles)
+		It->Highlight();
 }
 
 void ATBSGameModeBase::InitialiseGame()

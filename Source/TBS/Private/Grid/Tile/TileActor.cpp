@@ -14,10 +14,16 @@ ATileActor::ATileActor()
 
 bool ATileActor::SetOccupant(ATBSCharacter* NewOccupant)
 {
+	if(!NewOccupant)
+	{
+		Occupant = NewOccupant;
+		return true;
+	}
 	if(!Occupant)
 	{
 		Occupant = NewOccupant;
 		NewOccupant->SetActorLocation(GetActorLocation() + FVector(0.0f,0.0f,100.0f));
+		return true;
 	}
 	return false;
 }

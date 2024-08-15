@@ -55,7 +55,7 @@ TArray<ATileActor*> AGridManager::GetTilesInRange(ATileActor* Origin, int Range)
 		while (Total.Num() > 0)
 		{
 			Head = Total[0];
-			Head->Highlight();
+			//Head->Highlight();
 			if (!Completed.Contains(Head))
 			{
 				Head->Distance = 1000.0f;//float.MaxValue;

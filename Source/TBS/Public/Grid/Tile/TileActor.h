@@ -31,6 +31,9 @@ public:
 
 	UFUNCTION(BlueprintImplementableEvent)
 	void Highlight();
+
+	UFUNCTION(BlueprintImplementableEvent)
+	void UnHighlight();
 protected:
 	
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)

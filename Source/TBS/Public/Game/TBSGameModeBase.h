@@ -6,6 +6,7 @@
 #include "GameFramework/GameModeBase.h"
 #include "TBSGameModeBase.generated.h"
 
+class ATileActor;
 class AGridManager;
 /**
  * 
@@ -20,10 +21,15 @@ public:
 	
 	UPROPERTY(BlueprintReadOnly)
 	TObjectPtr<AGridManager> GridManager;
+
+	UFUNCTION(BlueprintCallable)
+	void SetHighlightTiles(TArray<ATileActor*> Tiles);
 protected:
 
 	UFUNCTION(BlueprintCallable)
 	void InitialiseGame();
-	
+
+	UPROPERTY(BlueprintReadWrite)
+	TArray<ATileActor*> HighlightedTiles;
 private:
 };
