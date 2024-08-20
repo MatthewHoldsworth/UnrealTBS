@@ -8,7 +8,7 @@
 
 class ATileActor;
 // This class does not need to be modified.
-UINTERFACE(MinimalAPI)
+UINTERFACE(meta = (CannotImplementInterfaceInBlueprint))
 class UEntityInterface : public UInterface
 {
 	GENERATED_BODY()
@@ -23,7 +23,9 @@ class TBS_API IEntityInterface
 
 	// Add interface functions to this class. This is the class that will be inherited to implement this interface.
 public:
+	UFUNCTION(BlueprintCallable, Category = "Entity Functions")
 	virtual ATileActor* GetEntityLocation() const = 0;
+	UFUNCTION(BlueprintCallable, Category = "Entity Functions")
 	virtual void SetEntityLocation(ATileActor* NewLocation) = 0;
 	
 	//UPROPERTY(BlueprintReadOnly, Category="Entity")
