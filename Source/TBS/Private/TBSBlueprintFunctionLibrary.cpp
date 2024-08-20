@@ -3,6 +3,9 @@
 
 #include "TBSBlueprintFunctionLibrary.h"
 
+#include "Attribute/TBSAbilitySystemComponent.h"
+#include "Attribute/TBSAttributeSet.h"
+#include "Character/TBSCharacter.h"
 #include "Game/TBSGameModeBase.h"
 #include "Game/TBSGameStateBase.h"
 #include "GameFramework/GameModeBase.h"
@@ -13,6 +16,23 @@
 UTBSWidgetController* UTBSBlueprintFunctionLibrary::GetWidgetController(UUserWidget* ControlledWidget)
 {
 	return CastChecked<UTBSUserWidget>(ControlledWidget)->Controller;
+}
+
+const UTBSAttributeSet* UTBSBlueprintFunctionLibrary::GetTBSAttributeSet(UAbilitySystemComponent* AbilitySystemComponent)
+{
+	// UTBSAbilitySystemComponent* test1 =  Cast<UTBSAbilitySystemComponent>(AbilitySystemComponent);
+	// const UTBSAttributeSet* test2 = Cast<UTBSAttributeSet>(test1->GetAttributeSet(UTBSAttributeSet::StaticClass()));
+	return Cast<UTBSAttributeSet>(
+		Cast<UTBSAbilitySystemComponent>(AbilitySystemComponent)->
+		GetAttributeSet(UTBSAttributeSet::StaticClass())
+		);
+}
+
+UTBSAbilitySystemComponent* UTBSBlueprintFunctionLibrary::GetTBSAbilitySystemComponent(ACharacter* Character)
+{
+	return Cast<UTBSAbilitySystemComponent>(
+		Cast<ATBSCharacter>(Character)->GetAbilitySystemComponent()
+		);
 }
 
 ATileActor* UTBSBlueprintFunctionLibrary::GetTileAt(FIntVector Vector)

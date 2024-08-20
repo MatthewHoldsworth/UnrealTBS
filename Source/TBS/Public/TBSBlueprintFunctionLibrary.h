@@ -6,6 +6,9 @@
 #include "Kismet/BlueprintFunctionLibrary.h"
 #include "TBSBlueprintFunctionLibrary.generated.h"
 
+class UTBSAbilitySystemComponent;
+class UTBSAttributeSet;
+class UAbilitySystemComponent;
 class ATBSGameStateBase;
 class AGridManager;
 class ATileActor;
@@ -21,6 +24,12 @@ public:
 
 	UFUNCTION(BlueprintCallable, Category="UI")
 	static UTBSWidgetController* GetWidgetController(UUserWidget* ControlledWidget);
+	
+	UFUNCTION(BlueprintCallable, BlueprintPure, Category="Ability System")
+	static const UTBSAttributeSet* GetTBSAttributeSet(UAbilitySystemComponent* AbilitySystemComponent);
+	
+	UFUNCTION(BlueprintCallable, BlueprintPure, Category="Ability System")
+	static UTBSAbilitySystemComponent* GetTBSAbilitySystemComponent(ACharacter* Character);
 	
 	UFUNCTION(BlueprintCallable, Category="Grid")
 	static ATileActor* GetTileAt(FIntVector Vector);
