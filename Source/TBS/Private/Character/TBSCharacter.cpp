@@ -39,7 +39,7 @@ void ATBSCharacter::Destroyed()
 
 	//const UTBSAttributeSet* AttributeSet = Cast<UTBSAttributeSet>(AbilitySystemComponent->GetAttributeSet(UTBSAttributeSet::StaticClass()));
 
-	for(auto& It : AttributeSet->TagsToAttributes)
+	for(const auto& It : AttributeSet->TagsToAttributes)
 	{
 		AbilitySystemComponent->GetGameplayAttributeValueChangeDelegate(It.Value()).Clear();
 	}

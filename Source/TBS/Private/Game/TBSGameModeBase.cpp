@@ -14,15 +14,6 @@ ATBSGameModeBase::ATBSGameModeBase()
 	GridManager = Cast<AGridManager>(UGameplayStatics::GetActorOfClass(GetWorld(), AGridManager::StaticClass()));
 }
 
-void ATBSGameModeBase::SetHighlightTiles(const TArray<ATileActor*> Tiles)
-{
-	for (const auto& It: HighlightedTiles)
-		It->UnHighlight();
-	HighlightedTiles = Tiles;
-	for (const auto& It: HighlightedTiles)
-		It->Highlight();
-}
-
 void ATBSGameModeBase::InitialiseGame()
 {
 	GridManager = GetWorld()->SpawnActor<AGridManager>();

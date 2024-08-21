@@ -21,15 +21,9 @@ public:
 	
 	UPROPERTY(BlueprintReadOnly)
 	TObjectPtr<AGridManager> GridManager;
-
-	UFUNCTION(BlueprintCallable)
-	void SetHighlightTiles(TArray<ATileActor*> Tiles);
 protected:
 
 	UFUNCTION(BlueprintCallable)
 	void InitialiseGame();
-
-	UPROPERTY(BlueprintReadWrite)
-	TArray<ATileActor*> HighlightedTiles;
 private:
 };

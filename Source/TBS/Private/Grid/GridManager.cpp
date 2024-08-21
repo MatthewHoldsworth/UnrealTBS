@@ -82,6 +82,15 @@ TArray<ATileActor*> AGridManager::GetTilesInRange(ATileActor* Origin, int Range)
 	//return TArray<ATileActor*>();
 }
 
+void AGridManager::SetHighlightTiles(const TArray<ATileActor*> Tiles)
+{
+	for (const auto& It: HighlightedTiles)
+		It->UnHighlight();
+	HighlightedTiles = Tiles;
+	for (const auto& It: HighlightedTiles)
+		It->Highlight();
+}
+
 void AGridManager::CalculateDistances(ATileActor* Origin, TArray<ATileActor*> Tiles)
 {
 	TArray<ATileActor*> ToDo = TArray<ATileActor*>(Tiles);

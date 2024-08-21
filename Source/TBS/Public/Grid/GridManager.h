@@ -38,6 +38,9 @@ public:
 	TArray<ATileActor*> TilesOfInterest;
 
 	UFUNCTION(BlueprintCallable)
+	void SetHighlightTiles(const TArray<ATileActor*> Tiles);
+	
+	UFUNCTION(BlueprintCallable)
 	void CalculateDistances(ATileActor* Origin, TArray<ATileActor*> Tiles);
 	
 	UPROPERTY(EditDefaultsOnly, Category="Grid Properties")
@@ -46,6 +49,9 @@ public:
 	UPROPERTY(EditDefaultsOnly, Category="Grid Properties")
 	int GridY;
 protected:
+	UPROPERTY(BlueprintReadWrite)
+	TArray<ATileActor*> HighlightedTiles;
+	
 	UPROPERTY(EditDefaultsOnly)
 	TObjectPtr<USphereComponent> DebugSphere;
 	
