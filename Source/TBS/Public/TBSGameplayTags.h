@@ -12,7 +12,7 @@ public:
 
 	static void InitialiseNativeGameplayTags();
 
-#pragma region Primary Attributes Tag
+#pragma region Primary Attribute Tags
 	FGameplayTag Attributes_Primary_Strength;
 	FGameplayTag Attributes_Primary_Dexterity;
 	FGameplayTag Attributes_Primary_Constitution;
@@ -20,6 +20,11 @@ public:
 	FGameplayTag Attributes_Primary_Wisdom;
 	FGameplayTag Attributes_Primary_Charisma;
 #pragma endregion
+
+#pragma region Vital Attribute Tags
+	FGameplayTag Attributes_Vital_Health;
+	FGameplayTag Attributes_Vital_MaxHealth;
+#pragma endregion 
 
 #pragma region Ability Tags
 	FGameplayTag Abilities_Basic_Move;

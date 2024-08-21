@@ -13,6 +13,7 @@ ATBSCharacter::ATBSCharacter()
  	AttributeSet = CreateDefaultSubobject<UTBSAttributeSet>("AttributeSet");
 	WidgetComponent = CreateDefaultSubobject<UWidgetComponent>("WidgetComponent");
 	WidgetComponent->SetWidgetSpace(EWidgetSpace::Screen);
+	WidgetComponent->SetDrawAtDesiredSize(true);
 	WidgetComponent->AttachToComponent(RootComponent, FAttachmentTransformRules::KeepRelativeTransform);
 }
 

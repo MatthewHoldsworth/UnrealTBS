@@ -18,6 +18,11 @@ void FTBSGameplayTags::InitialiseNativeGameplayTags()
 	GameplayTags.Attributes_Primary_Charisma = UGameplayTagsManager::Get().AddNativeGameplayTag(FName("Attributes.Primary.Charisma"), FString("Charisma"));
 #pragma endregion
 
+#pragma region Vital Attributes
+	GameplayTags.Attributes_Vital_Health = UGameplayTagsManager::Get().AddNativeGameplayTag(FName("Attributes.Vital.Health"), FString("Health"));
+	GameplayTags.Attributes_Vital_MaxHealth = UGameplayTagsManager::Get().AddNativeGameplayTag(FName("Attributes.Vital.MaxHealth"), FString("Max Health"));
+#pragma endregion
+
 #pragma region Abilities
 	GameplayTags.Abilities_Basic_Move = UGameplayTagsManager::Get().AddNativeGameplayTag(FName("Abilities.Basic.Move"), FString("Move"));
 #pragma endregion 
