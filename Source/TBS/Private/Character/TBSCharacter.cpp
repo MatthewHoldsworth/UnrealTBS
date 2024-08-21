@@ -3,6 +3,7 @@
 
 #include "Character/TBSCharacter.h"
 
+#include "TBSGameplayTags.h"
 #include "Attribute/TBSAbilitySystemComponent.h"
 #include "Components/WidgetComponent.h"
 
@@ -30,6 +31,18 @@ ATileActor* ATBSCharacter::GetEntityLocation() const
 void ATBSCharacter::SetEntityLocation(ATileActor* NewLocation)
 {
 	EntityLocation = NewLocation;
+}
+
+void ATBSCharacter::Destroyed()
+{
+	Super::Destroyed();
+
+	//const UTBSAttributeSet* AttributeSet = Cast<UTBSAttributeSet>(AbilitySystemComponent->GetAttributeSet(UTBSAttributeSet::StaticClass()));
+
+	for(auto& It : AttributeSet->TagsToAttributes)
+	{
+		AbilitySystemComponent->GetGameplayAttributeValueChangeDelegate(It.Value()).Clear();
+	}
 }
 
 void ATBSCharacter::BeginPlay()

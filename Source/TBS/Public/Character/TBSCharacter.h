@@ -27,6 +27,7 @@ public:
 	UFUNCTION(BlueprintCallable)
 	virtual void SetEntityLocation(ATileActor* NewLocation) override;
 
+	virtual void Destroyed() override;
 protected:
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly)
 	TObjectPtr<UAbilitySystemComponent> AbilitySystemComponent;
