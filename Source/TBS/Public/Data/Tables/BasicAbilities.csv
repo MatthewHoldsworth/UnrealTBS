@@ -1,0 +1,4 @@
+---,AbilityDisplayName,Thumbnail,Tags,AbilityClass
+TestAbility,"Test Ability","/Script/Engine.Texture2D'/Game/Assets/Textures/TTest.TTest'","(TagName=""Abilities.Basic"")","/Script/Engine.BlueprintGeneratedClass'/Game/Blueprints/AbilitySystem/Abilities/BP_TestGameplayAbility.BP_TestGameplayAbility_C'"
+MoveAbility,"Move Ability","/Script/Engine.Texture2D'/Game/Assets/Textures/MoveImage.MoveImage'","(TagName=""Abilities.Basic.Move"")","/Script/Engine.BlueprintGeneratedClass'/Game/Blueprints/AbilitySystem/Abilities/BP_TestGameplayAbility.BP_TestGameplayAbility_C'"
+SelfDamage,"Self Damage","/Script/Engine.Texture2D'/Game/Assets/Textures/TTest.TTest'","(TagName=""Abilities.Basic"")","/Script/Engine.BlueprintGeneratedClass'/Game/Blueprints/AbilitySystem/Abilities/BP_TestSelfDamageAbility.BP_TestSelfDamageAbility_C'"

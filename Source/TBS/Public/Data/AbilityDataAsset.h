@@ -14,7 +14,7 @@ struct FAbilityAsset : public FTableRowBase
 	GENERATED_BODY()
 	
 	UPROPERTY(EditAnywhere, BlueprintReadOnly)
-	FName AbilityAssetName;
+	FName AbilityDisplayName;
 	
 	UPROPERTY(EditAnywhere, BlueprintReadOnly)
 	UTexture2D* Thumbnail;

@@ -24,7 +24,7 @@ void UHealthBarWidgetController::InitialiseCallbacks(UTBSAbilitySystemComponent*
 void UHealthBarWidgetController::ClearCallbacks(UTBSAbilitySystemComponent* AbilitySystemComponent)
 {
 	const UTBSAttributeSet* AttributeSet = Cast<UTBSAttributeSet>(AbilitySystemComponent->GetAttributeSet(UTBSAttributeSet::StaticClass()));
-	
+
 	AbilitySystemComponent->GetGameplayAttributeValueChangeDelegate(AttributeSet->GetHealthAttribute()).Clear();
 	AbilitySystemComponent->GetGameplayAttributeValueChangeDelegate(AttributeSet->GetMaxHealthAttribute()).Clear();
 }
