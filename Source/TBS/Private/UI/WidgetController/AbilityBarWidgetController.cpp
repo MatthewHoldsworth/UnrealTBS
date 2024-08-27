@@ -5,9 +5,11 @@
 
 #include "Attribute/TBSAbilitySystemComponent.h"
 #include "Character/TBSCharacter.h"
+#include "Player/TBSPlayerController.h"
 
 void UAbilityBarWidgetController::SetSelectedAbility(FGameplayAbilitySpecHandle AbilitySpecHandle)
 {
+	Cast<ATBSPlayerController>(SelectedCharacter->GetController())->PlayerSelectedAbility = AbilitySpecHandle;
 	SelectedAbility = AbilitySpecHandle;
 }
 

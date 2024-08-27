@@ -18,7 +18,6 @@ class TBS_API ATBSGameModeBase : public AGameModeBase
 public:
 	ATBSGameModeBase();
 	
-	
 	UPROPERTY(BlueprintReadOnly)
 	TObjectPtr<AGridManager> GridManager;
 protected:

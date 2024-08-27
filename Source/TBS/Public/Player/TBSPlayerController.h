@@ -3,6 +3,7 @@
 #pragma once
 
 #include "CoreMinimal.h"
+#include "GameplayAbilitySpecHandle.h"
 #include "GameFramework/PlayerController.h"
 #include "TBSPlayerController.generated.h"
 
@@ -27,6 +28,9 @@ public:
 	FOnEntitySelected OnEntitySelected;
 	UPROPERTY(BlueprintAssignable)
 	FOnTileSelected OnTileSelected;
+
+	UPROPERTY(BlueprintReadOnly)
+	FGameplayAbilitySpecHandle PlayerSelectedAbility;
 	
 	UPROPERTY(BlueprintReadWrite)
 	TScriptInterface<IEntityInterface> SelectedEntity;
