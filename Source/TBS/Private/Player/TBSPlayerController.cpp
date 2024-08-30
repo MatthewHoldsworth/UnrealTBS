@@ -4,6 +4,7 @@
 #include "Player/TBSPlayerController.h"
 
 #include "Character/TBSCharacter.h"
+#include "AbilitySystemComponent.h"
 #include "Grid/Tile/TileActor.h"
 #include "Interfaces/EntityInterface.h"
 
@@ -16,19 +17,25 @@ ATBSPlayerController::ATBSPlayerController()
 	
 }
 
-TScriptInterface<IEntityInterface> ATBSPlayerController::GetEntityUnderCursor()
+TScriptInterface<IEntityInterface> ATBSPlayerController::GetEntityUnderCursor(bool SelectEntity) const
 {
-	FHitResult HitResult;
-	
-	if(GetHitResultUnderCursor(ECC_WorldDynamic,false,HitResult))
+	if(FHitResult HitResult; GetHitResultUnderCursor(ECC_WorldDynamic,false,HitResult))
 	{
 		if(HitResult.GetActor()->Implements<UEntityInterface>())
 		{
-			OnEntitySelected.Broadcast(HitResult.GetActor());
+			if(SelectEntity)
+				OnEntitySelected.Broadcast(HitResult.GetActor());
 			return HitResult.GetActor();
 		}
 	}
 	return nullptr;
+}
+
+bool ATBSPlayerController::ExecuteSelectedAbility()
+{
+	GetEntityUnderCursor(false);
+	GetPawn();
+	return true;
 }
 
 ATileActor* ATBSPlayerController::GetTileUnderCursor()

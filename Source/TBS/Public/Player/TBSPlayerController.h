@@ -38,7 +38,10 @@ public:
 	TObjectPtr<ATileActor> SelectedTile;
 protected:
 	UFUNCTION(BlueprintCallable)
-	TScriptInterface<IEntityInterface> GetEntityUnderCursor();
+	TScriptInterface<IEntityInterface> GetEntityUnderCursor(bool SelectEntity) const;
+	
+	UFUNCTION(BlueprintCallable)
+	bool ExecuteSelectedAbility();
 	
 	UFUNCTION(BlueprintCallable)
 	ATileActor* GetTileUnderCursor();

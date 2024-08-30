@@ -9,7 +9,8 @@
 
 void UAbilityBarWidgetController::SetSelectedAbility(FGameplayAbilitySpecHandle AbilitySpecHandle)
 {
-	Cast<ATBSPlayerController>(SelectedCharacter->GetController())->PlayerSelectedAbility = AbilitySpecHandle;
+	if (IsValid(SelectedCharacter))
+		Cast<ATBSPlayerController>(SelectedCharacter->GetController())->PlayerSelectedAbility = AbilitySpecHandle;
 	SelectedAbility = AbilitySpecHandle;
 }
 
