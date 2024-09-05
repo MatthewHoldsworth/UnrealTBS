@@ -25,6 +25,7 @@ class TBS_API IEntityInterface
 public:
 	UFUNCTION(BlueprintCallable, Category = "Entity Functions")
 	virtual ATileActor* GetEntityLocation() const = 0;
+
 	UFUNCTION(BlueprintCallable, Category = "Entity Functions")
 	virtual void SetEntityLocation(ATileActor* NewLocation) = 0;
 	

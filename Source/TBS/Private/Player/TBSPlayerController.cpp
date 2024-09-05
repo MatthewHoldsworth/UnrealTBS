@@ -5,6 +5,7 @@
 
 #include "Character/TBSCharacter.h"
 #include "AbilitySystemComponent.h"
+#include "Attribute/TBSAbilitySystemComponent.h"
 #include "Grid/Tile/TileActor.h"
 #include "Interfaces/EntityInterface.h"
 
@@ -31,9 +32,10 @@ TScriptInterface<IEntityInterface> ATBSPlayerController::GetEntityUnderCursor(bo
 	return nullptr;
 }
 
-bool ATBSPlayerController::ExecuteSelectedAbility()
+bool ATBSPlayerController::ExecuteSelectedAbility(UTBSAbilitySystemComponent* Source)
 {
-	GetEntityUnderCursor(false);
+	GetEntityUnderCursor(false).GetObject();
+	Source->TryActivateAbility(PlayerSelectedAbility);
 	GetPawn();
 	return true;
 }

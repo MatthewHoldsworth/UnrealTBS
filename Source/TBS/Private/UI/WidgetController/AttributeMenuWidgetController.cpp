@@ -35,7 +35,9 @@ void UAttributeMenuWidgetController::ClearCallbacks(UTBSAbilitySystemComponent* 
 	const UTBSAttributeSet* AttributeSet = Cast<UTBSAttributeSet>(AbilitySystemComponent->GetAttributeSet(UTBSAttributeSet::StaticClass()));
 	for(auto& It : AttributeSet->TagsToAttributes)
 	{
-		AbilitySystemComponent->GetGameplayAttributeValueChangeDelegate(It.Value()).Clear();
+		//AbilitySystemComponent->GetGameplayAttributeValueChangeDelegate(It.Value()).Remove();
+		AbilitySystemComponent->GetGameplayAttributeValueChangeDelegate(It.Value()).RemoveAll(this);
+		//AbilitySystemComponent->GetGameplayAttributeValueChangeDelegate(It.Value()).Clear();
 		//GEngine->AddOnScreenDebugMessage(-1, 15.0f, FColor::Yellow, it.Key.GetTagName().ToString());	
 	}
 }

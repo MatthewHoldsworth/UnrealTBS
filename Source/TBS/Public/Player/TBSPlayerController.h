@@ -41,7 +41,7 @@ protected:
 	TScriptInterface<IEntityInterface> GetEntityUnderCursor(bool SelectEntity) const;
 	
 	UFUNCTION(BlueprintCallable)
-	bool ExecuteSelectedAbility();
+	bool ExecuteSelectedAbility(UTBSAbilitySystemComponent* Source);
 	
 	UFUNCTION(BlueprintCallable)
 	ATileActor* GetTileUnderCursor();
