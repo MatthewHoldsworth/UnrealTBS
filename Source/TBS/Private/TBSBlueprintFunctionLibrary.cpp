@@ -15,7 +15,7 @@
 
 UTBSWidgetController* UTBSBlueprintFunctionLibrary::GetWidgetController(UUserWidget* ControlledWidget)
 {
-	return CastChecked<UTBSUserWidget>(ControlledWidget)->Controller;
+	return CastChecked<UTBSUserWidget>(ControlledWidget)->WidgetController;
 }
 
 const UTBSAttributeSet* UTBSBlueprintFunctionLibrary::GetTBSAttributeSet(UAbilitySystemComponent* AbilitySystemComponent)

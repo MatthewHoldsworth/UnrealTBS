@@ -17,7 +17,7 @@ class TBS_API UTBSUserWidget : public UUserWidget
 public:
 	
 	UPROPERTY(BlueprintReadWrite)
-	TObjectPtr<UTBSWidgetController> Controller;
+	TObjectPtr<UTBSWidgetController> WidgetController;
 protected:
 	
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly)
