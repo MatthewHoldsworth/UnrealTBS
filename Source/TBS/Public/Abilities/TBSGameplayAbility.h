@@ -22,4 +22,9 @@ public:
 	
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly)
 	int32 Radius;
+
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly)
+	bool bHasPath;
+
+	
 };

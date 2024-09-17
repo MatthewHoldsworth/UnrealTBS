@@ -34,6 +34,7 @@ public:
 	
 	UPROPERTY(BlueprintReadWrite)
 	TScriptInterface<IEntityInterface> SelectedEntity;
+	
 	UPROPERTY(BlueprintReadWrite)
 	TObjectPtr<ATileActor> SelectedTile;
 protected:

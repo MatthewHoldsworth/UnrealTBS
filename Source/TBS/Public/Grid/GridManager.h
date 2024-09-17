@@ -9,6 +9,8 @@
 class ATileActor;
 class USphereComponent;
 
+DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FOnTileHovered, ATileActor*, Tile);
+
 // USTRUCT()
 // struct FGridLocation
 // {
@@ -21,7 +23,10 @@ class TBS_API AGridManager : public AActor
 {
 	GENERATED_BODY()
 	
-public:	
+public:
+	UPROPERTY(BlueprintAssignable)
+	FOnTileHovered OnTileHovered;
+	
 	// Sets default values for this actor's properties
 	AGridManager();
 
@@ -41,6 +46,12 @@ public:
 	void SetHighlightTiles(const TArray<ATileActor*> Tiles);
 	
 	UFUNCTION(BlueprintCallable)
+	void AddTileToPath(ATileActor* Tile);
+	
+	UFUNCTION(BlueprintCallable)
+	void TileHovered(ATileActor* Tile);
+	
+	UFUNCTION(BlueprintCallable)
 	void CalculateDistances(ATileActor* Origin, TArray<ATileActor*> Tiles);
 	
 	UPROPERTY(EditDefaultsOnly, Category="Grid Properties")
@@ -51,6 +62,9 @@ public:
 protected:
 	UPROPERTY(BlueprintReadWrite)
 	TArray<ATileActor*> HighlightedTiles;
+	
+	UPROPERTY(BlueprintReadWrite)
+	TArray<ATileActor*> TilePath;
 	
 	UPROPERTY(EditDefaultsOnly)
 	TObjectPtr<USphereComponent> DebugSphere;

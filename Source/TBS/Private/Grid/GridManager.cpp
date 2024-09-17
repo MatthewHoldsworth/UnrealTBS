@@ -91,6 +91,17 @@ void AGridManager::SetHighlightTiles(const TArray<ATileActor*> Tiles)
 		It->Highlight();
 }
 
+void AGridManager::AddTileToPath(ATileActor* Tile)
+{
+	if(Tile)
+		TilePath.AddUnique(Tile);
+}
+
+void AGridManager::TileHovered(ATileActor* Tile)
+{
+	OnTileHovered.Broadcast(Tile);
+}
+
 void AGridManager::CalculateDistances(ATileActor* Origin, TArray<ATileActor*> Tiles)
 {
 	TArray<ATileActor*> ToDo = TArray<ATileActor*>(Tiles);
