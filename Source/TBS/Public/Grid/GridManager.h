@@ -53,6 +53,9 @@ public:
 	
 	UFUNCTION(BlueprintCallable)
 	void CalculateDistances(ATileActor* Origin, TArray<ATileActor*> Tiles);
+
+	UFUNCTION(BlueprintCallable)
+	TArray<ATileActor*> CalculatePath(ATileActor* Start, ATileActor* Goal);
 	
 	UPROPERTY(EditDefaultsOnly, Category="Grid Properties")
 	int GridX;

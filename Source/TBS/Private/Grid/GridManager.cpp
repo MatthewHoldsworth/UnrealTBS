@@ -118,15 +118,14 @@ void AGridManager::CalculateDistances(ATileActor* Origin, TArray<ATileActor*> Ti
 	}
 }
 
-/*
-public List<TileD> CalculatePath(TileD Start, TileD Goal)
+TArray<ATileActor*> AGridManager::CalculatePath(ATileActor* Start, ATileActor* Goal)
 {
-	List<TileD> path = new List<TileD>();
-	if (Goal.Neighbours.Count == 0)
-		return null;
+	TArray<ATileActor*> path;
+	if (Goal->Neighbours.Num() == 0)
+		return TArray<ATileActor*>();
 	path.Add(Goal);
-	float shortestDist = float.MaxValue;
-	TileD closestTile = path[path.Count - 1].Neighbours[0];
+	float shortestDist = 1000.0f; //I don't see this coming to back to bite me
+	ATileActor* closestTile = path[path.Num() - 1]->Neighbours[0];
 	//foreach (TileD n in path[path.Count - 1].Neighbours)
 	//{
 	//    if (n.distance == -1f)
@@ -140,29 +139,30 @@ public List<TileD> CalculatePath(TileD Start, TileD Goal)
 	//    }
 	//}
 	int count =1;
-	Debug.Log("Dijkstra iteration: " + count);
-	while (!path[path.Count-1].Neighbours.Contains(Start))
+	//Debug.Log("Dijkstra iteration: " + count);
+	while (!path[path.Num()-1]->Neighbours.Contains(Start))
 	{
-		foreach (TileD n in path[path.Count - 1].Neighbours)
+		for (auto i : path[path.Num() - 1]->Neighbours)
 		{
-			if (n.distance == -1f)
+			if (i->Distance == -1.0f)
 			{
 
 			}
-			else if (n.distance < shortestDist && !path.Contains(n))
+			else if (i->Distance < shortestDist && !path.Contains(i))
 			{
-				shortestDist = n.distance;
-				closestTile = n;
+				shortestDist = i->Distance;
+				closestTile = i;
 			}
 		}
 		path.Add(closestTile);
 		count++;
-		Debug.Log("Dijkstra iteration: " + count);
+		//Debug.Log("Dijkstra iteration: " + count);
 	}
-	path.Reverse();
+	Algo::Reverse(path);
+	//path.Reverse();
 	return path;
 }
-*/
+
 
 void AGridManager::GenerateTileMapNeighbours()
 {
