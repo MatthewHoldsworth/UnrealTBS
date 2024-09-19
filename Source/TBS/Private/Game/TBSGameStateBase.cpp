@@ -9,6 +9,20 @@ void ATBSGameStateBase::EnterCombat()
 	CombatStateChanged.Broadcast(bInCombat);
 }
 
+void ATBSGameStateBase::BeginPlay()
+{
+	//Super::BeginPlay();
+	InitialStateBroadcast();
+}
+
+void ATBSGameStateBase::InitialStateBroadcast()
+{
+	if(bInCombat)
+		EnterCombat();
+	else
+		ExitCombat();
+}
+
 void ATBSGameStateBase::ExitCombat()
 {
 	bInCombat = false;

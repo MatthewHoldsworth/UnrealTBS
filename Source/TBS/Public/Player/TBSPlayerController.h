@@ -29,8 +29,11 @@ public:
 	UPROPERTY(BlueprintAssignable)
 	FOnTileSelected OnTileSelected;
 
-	UPROPERTY(BlueprintReadOnly)
+	UPROPERTY(BlueprintReadOnly, Category= "Selected Ability")
 	FGameplayAbilitySpecHandle PlayerSelectedAbility;
+
+	UPROPERTY(BlueprintReadWrite, Category= "Selected Ability")
+	bool bIsAbilitySelected;
 	
 	UPROPERTY(BlueprintReadWrite)
 	TScriptInterface<IEntityInterface> SelectedEntity;
@@ -41,9 +44,21 @@ protected:
 	UFUNCTION(BlueprintCallable)
 	TScriptInterface<IEntityInterface> GetEntityUnderCursor(bool SelectEntity) const;
 	
-	UFUNCTION(BlueprintCallable)
+	UFUNCTION(BlueprintCallable, Category= "Selected Ability")
 	bool ExecuteSelectedAbility(UTBSAbilitySystemComponent* Source);
 	
 	UFUNCTION(BlueprintCallable)
 	ATileActor* GetTileUnderCursor();
+
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category= "Selected Ability")
+	TSubclassOf<AActor> PathingObject;
+
+	UPROPERTY(BlueprintReadWrite, Category= "Selected Ability")
+	TArray<AActor*> SpawnedPathObjects;
+
+	UPROPERTY(BlueprintReadWrite, VisibleAnywhere, Category= "Selected Ability")
+	TArray<ATileActor*> AbilityPath;
+
+	UPROPERTY(BlueprintReadWrite, VisibleAnywhere, Category= "Selected Ability")
+	TArray<ATileActor*> TilesInRange;
 };

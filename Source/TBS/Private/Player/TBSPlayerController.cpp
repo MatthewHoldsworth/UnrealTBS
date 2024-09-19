@@ -6,6 +6,7 @@
 #include "Character/TBSCharacter.h"
 #include "AbilitySystemComponent.h"
 #include "Attribute/TBSAbilitySystemComponent.h"
+#include "Game/TBSGameStateBase.h"
 #include "Grid/Tile/TileActor.h"
 #include "Interfaces/EntityInterface.h"
 
@@ -15,7 +16,8 @@ ATBSPlayerController::ATBSPlayerController()
 	bEnableClickEvents = true;
 	bEnableMouseOverEvents = true;
 	bLockLocation = false;
-	
+
+	//Cast<ATBSGameStateBase>(GetWorld()->GetGameState())->CombatStateChanged;
 }
 
 TScriptInterface<IEntityInterface> ATBSPlayerController::GetEntityUnderCursor(bool SelectEntity) const

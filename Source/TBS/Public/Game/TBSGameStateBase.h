@@ -18,6 +18,11 @@ class TBS_API ATBSGameStateBase : public AGameStateBase
 public:
 	UFUNCTION(BlueprintCallable)
 	void EnterCombat();
+
+	void BeginPlay() override;
+
+	UFUNCTION()
+	void InitialStateBroadcast();
 	
 	UFUNCTION(BlueprintCallable)
 	void ExitCombat();
