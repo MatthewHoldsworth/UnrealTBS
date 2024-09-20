@@ -124,8 +124,8 @@ TArray<ATileActor*> AGridManager::CalculatePath(ATileActor* Start, ATileActor* G
 	if (Goal->Neighbours.Num() == 0)
 		return TArray<ATileActor*>();
 	path.Add(Goal);
-	float shortestDist = 1000.0f; //I don't see this coming to back to bite me
-	ATileActor* closestTile = path[path.Num() - 1]->Neighbours[0];
+	float ShortestDist = 1000.0f; //I don't see this coming to back to bite me
+	ATileActor* ClosestTile = path[path.Num() - 1]->Neighbours[0];
 	//foreach (TileD n in path[path.Count - 1].Neighbours)
 	//{
 	//    if (n.distance == -1f)
@@ -148,13 +148,13 @@ TArray<ATileActor*> AGridManager::CalculatePath(ATileActor* Start, ATileActor* G
 			{
 
 			}
-			else if (i->Distance < shortestDist && !path.Contains(i))
+			else if (i->Distance < ShortestDist && !path.Contains(i))
 			{
-				shortestDist = i->Distance;
-				closestTile = i;
+				ShortestDist = i->Distance;
+				ClosestTile = i;
 			}
 		}
-		path.Add(closestTile);
+		path.Add(ClosestTile);
 		count++;
 		//Debug.Log("Dijkstra iteration: " + count);
 	}
