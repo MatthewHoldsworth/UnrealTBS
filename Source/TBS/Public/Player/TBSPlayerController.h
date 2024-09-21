@@ -5,6 +5,7 @@
 #include "CoreMinimal.h"
 #include "GameplayAbilitySpecHandle.h"
 #include "GameFramework/PlayerController.h"
+#include "Grid/Tile/TileActor.h"
 #include "TBSPlayerController.generated.h"
 
 class ATileActor;
@@ -41,14 +42,14 @@ public:
 	UPROPERTY(BlueprintReadWrite)
 	TObjectPtr<ATileActor> SelectedTile;
 protected:
-	UFUNCTION(BlueprintCallable)
-	TScriptInterface<IEntityInterface> GetEntityUnderCursor(bool SelectEntity) const;
+	UFUNCTION(BlueprintCallable, BlueprintPure)
+	TScriptInterface<IEntityInterface> GetEntityUnderCursor(bool bSelectEntity) const;
+	
+	UFUNCTION(BlueprintCallable, BlueprintPure)
+	ATileActor* GetTileUnderCursor() const;
 	
 	UFUNCTION(BlueprintCallable, Category= "Selected Ability")
 	bool ExecuteSelectedAbility(UTBSAbilitySystemComponent* Source);
-	
-	UFUNCTION(BlueprintCallable)
-	ATileActor* GetTileUnderCursor();
 
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category= "Selected Ability")
 	TSubclassOf<AActor> PathingObject;

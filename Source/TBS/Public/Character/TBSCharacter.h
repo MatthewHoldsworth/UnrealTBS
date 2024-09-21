@@ -28,6 +28,26 @@ public:
 	virtual void SetEntityLocation(ATileActor* NewLocation) override;
 
 	virtual void Destroyed() override;
+
+#pragma region Character Tile Movement
+	UPROPERTY(BlueprintReadWrite, Category="Character Tile Movement")
+	bool bIsMoving;
+
+	UPROPERTY(BlueprintReadWrite, Category="Character Tile Movement")
+	TArray<ATileActor*> MovementPath;
+
+	UFUNCTION(BlueprintCallable, Category="Character Tile Movement")
+	void BeginMovement(TArray<ATileActor*> Path);
+
+	UFUNCTION(BlueprintImplementableEvent, Category="Character Tile Movement")
+	void MoveToNextTile();
+	
+	UFUNCTION(BlueprintCallable, Category="Character Tile Movement")
+	bool CanMoveToNextTile();
+	
+	UFUNCTION(BlueprintCallable, Category="Character Tile Movement")
+	void StopMoveToNextTile();
+#pragma endregion 
 protected:
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly)
 	TObjectPtr<UAbilitySystemComponent> AbilitySystemComponent;

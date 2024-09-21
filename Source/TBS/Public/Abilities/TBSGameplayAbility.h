@@ -6,6 +6,15 @@
 #include "Abilities/GameplayAbility.h"
 #include "TBSGameplayAbility.generated.h"
 
+UENUM(BlueprintType)
+enum ETargetTypes
+{
+	Any,
+	Entity,
+	Tile,
+	Self,
+	Last
+};
 /**
  * 
  */
@@ -25,6 +34,9 @@ public:
 
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly)
 	bool bHasPath;
+	
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly)
+	TEnumAsByte<ETargetTypes> ValidTargets;
 
 	
 };

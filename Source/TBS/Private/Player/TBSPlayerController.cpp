@@ -20,13 +20,13 @@ ATBSPlayerController::ATBSPlayerController()
 	//Cast<ATBSGameStateBase>(GetWorld()->GetGameState())->CombatStateChanged;
 }
 
-TScriptInterface<IEntityInterface> ATBSPlayerController::GetEntityUnderCursor(bool SelectEntity) const
+TScriptInterface<IEntityInterface> ATBSPlayerController::GetEntityUnderCursor(bool bSelectEntity) const
 {
 	if(FHitResult HitResult; GetHitResultUnderCursor(ECC_WorldDynamic,false,HitResult))
 	{
 		if(HitResult.GetActor()->Implements<UEntityInterface>())
 		{
-			if(SelectEntity)
+			if(bSelectEntity)
 				OnEntitySelected.Broadcast(HitResult.GetActor());
 			return HitResult.GetActor();
 		}
@@ -34,15 +34,7 @@ TScriptInterface<IEntityInterface> ATBSPlayerController::GetEntityUnderCursor(bo
 	return nullptr;
 }
 
-bool ATBSPlayerController::ExecuteSelectedAbility(UTBSAbilitySystemComponent* Source)
-{
-	GetEntityUnderCursor(false).GetObject();
-	Source->TryActivateAbility(PlayerSelectedAbility);
-	GetPawn();
-	return true;
-}
-
-ATileActor* ATBSPlayerController::GetTileUnderCursor()
+ATileActor* ATBSPlayerController::GetTileUnderCursor() const
 {
 	FHitResult HitResult;
 	
@@ -55,4 +47,13 @@ ATileActor* ATBSPlayerController::GetTileUnderCursor()
 		}
 	}
 	return nullptr;
+}
+
+
+bool ATBSPlayerController::ExecuteSelectedAbility(UTBSAbilitySystemComponent* Source)
+{
+	GetEntityUnderCursor(false).GetObject();
+	Source->TryActivateAbility(PlayerSelectedAbility);
+	GetPawn();
+	return true;
 }

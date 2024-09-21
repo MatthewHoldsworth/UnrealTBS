@@ -45,6 +45,23 @@ void ATBSCharacter::Destroyed()
 	}
 }
 
+void ATBSCharacter::BeginMovement(TArray<ATileActor*> Path)
+{
+	bIsMoving = true;
+	MovementPath = Path;
+}
+
+bool ATBSCharacter::CanMoveToNextTile()
+{
+	return true;
+}
+
+void ATBSCharacter::StopMoveToNextTile()
+{
+	bIsMoving = false;
+	MovementPath.Empty();
+}
+
 void ATBSCharacter::BeginPlay()
 {
 	Super::BeginPlay();
