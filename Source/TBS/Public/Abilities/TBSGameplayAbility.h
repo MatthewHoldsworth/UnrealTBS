@@ -6,6 +6,8 @@
 #include "Abilities/GameplayAbility.h"
 #include "TBSGameplayAbility.generated.h"
 
+class UTBSAbilitySystemComponent;
+
 UENUM(BlueprintType)
 enum ETargetTypes
 {
@@ -23,20 +25,24 @@ class TBS_API UTBSGameplayAbility : public UGameplayAbility
 {
 	GENERATED_BODY()
 public:
-	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly)
+	UPROPERTY(EditDefaultsOnly, BlueprintReadWrite)
 	FName AbilityName;
 	
-	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly)
+	UPROPERTY(EditDefaultsOnly, BlueprintReadWrite)
 	int32 Range;
 	
-	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly)
+	UPROPERTY(EditDefaultsOnly, BlueprintReadWrite)
 	int32 Radius;
 
-	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly)
+	UPROPERTY(EditDefaultsOnly, BlueprintReadWrite)
 	bool bHasPath;
 	
-	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly)
+	UPROPERTY(EditDefaultsOnly, BlueprintReadWrite)
 	TEnumAsByte<ETargetTypes> ValidTargets;
 
+	UFUNCTION(BlueprintImplementableEvent, BlueprintCallable)
+	void InitAbilityInfo(UTBSAbilitySystemComponent* AbilitySystemComponent) const;
 	
+// protected:
+// 	void InitAbilityInfo_Implementation();
 };

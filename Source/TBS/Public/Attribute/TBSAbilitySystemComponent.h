@@ -28,5 +28,7 @@ public:
 	
 	UFUNCTION(BlueprintCallable, Category="Attributes")
 	void BroadcastInitialValues();
-	
+
+	UFUNCTION(BlueprintCallable)
+	void InitGivenAbilities();
 };

@@ -2,7 +2,8 @@
 
 
 #include "Attribute/TBSAbilitySystemComponent.h"
-
+#include "AbilitySystemBlueprintLibrary.h"
+#include "Abilities/TBSGameplayAbility.h"
 #include "Attribute/TBSAttributeSet.h"
 
 UTBSAbilitySystemComponent::UTBSAbilitySystemComponent()
@@ -19,4 +20,18 @@ void UTBSAbilitySystemComponent::InitialiseCallbacks()
 void UTBSAbilitySystemComponent::BroadcastInitialValues()
 {
 	
+}
+
+void UTBSAbilitySystemComponent::InitGivenAbilities()
+{
+	TArray<FGameplayAbilitySpecHandle> TESTT;
+	GetAllAbilities(TESTT);
+	bool t = true;
+	for (auto it : TESTT)
+	{
+		const UTBSGameplayAbility* TBSAbility = Cast<UTBSGameplayAbility>(UAbilitySystemBlueprintLibrary::GetGameplayAbilityFromSpecHandle(this, it, t));
+		TBSAbility->InitAbilityInfo(this);
+		//const UGameplayAbility* Ability = UAbilitySystemBlueprintLibrary::GetGameplayAbilityFromSpecHandle(this, it, t);
+		
+	}
 }

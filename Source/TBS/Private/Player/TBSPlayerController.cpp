@@ -3,10 +3,14 @@
 
 #include "Player/TBSPlayerController.h"
 
+#include "AbilitySystemBlueprintLibrary.h"
 #include "Character/TBSCharacter.h"
 #include "AbilitySystemComponent.h"
+#include "Abilities/TBSGameplayAbility.h"
 #include "Attribute/TBSAbilitySystemComponent.h"
+#include "Game/TBSGameModeBase.h"
 #include "Game/TBSGameStateBase.h"
+#include "Grid/GridManager.h"
 #include "Grid/Tile/TileActor.h"
 #include "Interfaces/EntityInterface.h"
 
@@ -20,6 +24,20 @@ ATBSPlayerController::ATBSPlayerController()
 	//Cast<ATBSGameStateBase>(GetWorld()->GetGameState())->CombatStateChanged;
 }
 
+void ATBSPlayerController::SelectedAbility(FGameplayAbilitySpecHandle AbilitySelected)
+{
+	PlayerSelectedAbility = AbilitySelected;
+	bIsAbilitySelected = true;
+	
+	bool t = true;
+	ATBSCharacter* TBSCharacter = Cast<ATBSCharacter>(SelectedEntity.GetObject());
+	AGridManager* GridManager = Cast<ATBSGameModeBase>(GetWorld()->GetAuthGameMode())->GridManager;
+	const UTBSGameplayAbility* TBSAbility = Cast<UTBSGameplayAbility>(UAbilitySystemBlueprintLibrary::GetGameplayAbilityFromSpecHandle(TBSCharacter->GetAbilitySystemComponent(), AbilitySelected, t));
+
+	TilesInRange = GridManager->GetTilesInRange(SelectedEntity->EntityLocation, TBSAbility->Range);
+	GridManager->SetHighlightTiles(TilesInRange);
+}
+
 TScriptInterface<IEntityInterface> ATBSPlayerController::GetEntityUnderCursor(bool bSelectEntity) const
 {
 	if(FHitResult HitResult; GetHitResultUnderCursor(ECC_WorldDynamic,false,HitResult))
@@ -31,6 +49,8 @@ TScriptInterface<IEntityInterface> ATBSPlayerController::GetEntityUnderCursor(bo
 			return HitResult.GetActor();
 		}
 	}
+	if(bSelectEntity)
+		OnEntitySelected.Broadcast(nullptr);
 	return nullptr;
 }
 

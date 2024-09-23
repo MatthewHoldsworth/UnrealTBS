@@ -3,3 +3,6 @@
 
 #include "Abilities/TBSGameplayAbility.h"
 
+// void UTBSGameplayAbility::InitAbilityInfo_Implementation()
+// {
+// }

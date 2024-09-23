@@ -8,6 +8,7 @@
 #include "Grid/Tile/TileActor.h"
 #include "TBSPlayerController.generated.h"
 
+class UTBSAbilitySystemComponent;
 class ATileActor;
 class ATBSCharacter;
 
@@ -41,6 +42,9 @@ public:
 	
 	UPROPERTY(BlueprintReadWrite)
 	TObjectPtr<ATileActor> SelectedTile;
+	
+	UFUNCTION(BlueprintCallable)
+	void SelectedAbility(FGameplayAbilitySpecHandle AbilitySelected);
 protected:
 	UFUNCTION(BlueprintCallable, BlueprintPure)
 	TScriptInterface<IEntityInterface> GetEntityUnderCursor(bool bSelectEntity) const;
