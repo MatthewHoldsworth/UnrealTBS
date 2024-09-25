@@ -44,6 +44,7 @@ ATileActor* AGridManager::TileAt(int X, int Y)
 
 TArray<ATileActor*> AGridManager::GetTilesInRange(ATileActor* Origin, int Range)
 {
+	UE_LOG(LogTemp, Warning, TEXT("Get Tiles in Range iterations STARTED"));
 	int Iteration = Range;
 	TArray<ATileActor*> Total =Origin->Neighbours;
 	Total.Add(Origin);
@@ -58,7 +59,7 @@ TArray<ATileActor*> AGridManager::GetTilesInRange(ATileActor* Origin, int Range)
 			//Head->Highlight();
 			if (!Completed.Contains(Head))
 			{
-				Head->Distance = 1000.0f;//float.MaxValue;
+				//Head->Distance = 1000.0f;//float.MaxValue;
 				Completed.Add(Head);
 			}
 			Total.RemoveAt(0);
@@ -77,7 +78,8 @@ TArray<ATileActor*> AGridManager::GetTilesInRange(ATileActor* Origin, int Range)
 		Range--;
 	}
 	UE_LOG(LogTemp, Warning, TEXT("Get Tiles in Range iterations: %d"), Iteration);
-	CalculateDistances(Origin, Completed);
+	//CalculateDistances(Origin, Completed);
+	UE_LOG(LogTemp, Warning, TEXT("Get Tiles in Range iterations ENDED"));
 	return Completed;
 	//return TArray<ATileActor*>();
 }
@@ -89,6 +91,15 @@ void AGridManager::SetHighlightTiles(const TArray<ATileActor*> Tiles)
 	HighlightedTiles = Tiles;
 	for (const auto& It: HighlightedTiles)
 		It->Highlight();
+}
+
+void AGridManager::AddHighlightTiles(const TArray<ATileActor*> Tiles)
+{
+	for (const auto& It: Tiles)
+	{
+		It->Highlight();
+		HighlightedTiles.AddUnique(It);
+	}
 }
 
 void AGridManager::AddTileToPath(ATileActor* Tile)
@@ -105,6 +116,10 @@ void AGridManager::TileHovered(ATileActor* Tile)
 void AGridManager::CalculateDistances(ATileActor* Origin, TArray<ATileActor*> Tiles)
 {
 	TArray<ATileActor*> ToDo = TArray<ATileActor*>(Tiles);
+	for (auto& it : ToDo)
+	{
+		it->Distance = 1000.f;
+	}
 	Origin->Distance = 0;
 
 	while (ToDo.Num() > 0)

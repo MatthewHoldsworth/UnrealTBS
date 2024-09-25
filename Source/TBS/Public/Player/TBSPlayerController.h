@@ -66,4 +66,7 @@ protected:
 
 	UPROPERTY(BlueprintReadWrite, VisibleAnywhere, Category= "Selected Ability")
 	TArray<ATileActor*> TilesInRange;
+	
+	UPROPERTY(BlueprintReadWrite, VisibleAnywhere, Category= "Selected Ability")
+	int32 AbilityRadius;
 };

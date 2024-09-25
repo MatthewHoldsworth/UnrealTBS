@@ -46,6 +46,9 @@ public:
 	void SetHighlightTiles(const TArray<ATileActor*> Tiles);
 	
 	UFUNCTION(BlueprintCallable)
+	void AddHighlightTiles(const TArray<ATileActor*> Tiles);
+	
+	UFUNCTION(BlueprintCallable)
 	void AddTileToPath(ATileActor* Tile);
 	
 	UFUNCTION(BlueprintCallable)
