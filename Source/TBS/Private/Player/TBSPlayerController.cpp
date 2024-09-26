@@ -37,7 +37,8 @@ void ATBSPlayerController::SelectedAbility(FGameplayAbilitySpecHandle AbilitySel
 	AbilityRadius = TBSAbility->Radius;
 	TilesInRange = GridManager->GetTilesInRange(SelectedEntity->EntityLocation, TBSAbility->Range);
 	GridManager->CalculateDistances(SelectedEntity->EntityLocation, TilesInRange);
-	GridManager->SetHighlightTiles(TilesInRange);
+	GridManager->AddHighlightTiles(TilesInRange);
+	//GridManager->SetHighlightTiles(TilesInRange);
 }
 
 TScriptInterface<IEntityInterface> ATBSPlayerController::GetEntityUnderCursor(bool bSelectEntity) const

@@ -34,6 +34,9 @@ public:
 
 	UFUNCTION(BlueprintImplementableEvent)
 	void UnHighlight();
+
+	UFUNCTION(BlueprintCallable, BlueprintPure)
+	bool IsHighlighted() const;
 protected:
 	
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
@@ -41,4 +44,7 @@ protected:
 	
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	TObjectPtr<UStaticMeshComponent> CubeComponent;
+
+	UPROPERTY(BlueprintReadWrite)
+	int32 HighlightLevel;
 };

@@ -37,3 +37,8 @@ void ATileActor::GenerateNeighbours()
 		Neighbours.AddUnique(Cast<ATileActor>(OverlappedActor));
 	}
 }
+
+bool ATileActor::IsHighlighted() const
+{
+	return HighlightLevel > 0;
+}

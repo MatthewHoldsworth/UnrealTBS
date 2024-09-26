@@ -102,6 +102,19 @@ void AGridManager::AddHighlightTiles(const TArray<ATileActor*> Tiles)
 	}
 }
 
+void AGridManager::RemoveHighlightTiles(const TArray<ATileActor*> Tiles)
+{
+	for (const auto& It: Tiles)
+	{
+		// if(HighlightedTiles.Find(It))
+		// {
+			It->UnHighlight();
+			if(!It->IsHighlighted())
+				HighlightedTiles.Remove(It);
+		//}
+	}
+}
+
 void AGridManager::AddTileToPath(ATileActor* Tile)
 {
 	if(Tile)
