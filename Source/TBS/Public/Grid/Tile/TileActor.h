@@ -29,10 +29,10 @@ public:
 	UFUNCTION(BlueprintCallable)
 	void GenerateNeighbours();
 
-	UFUNCTION(BlueprintImplementableEvent)
+	UFUNCTION(BlueprintImplementableEvent, BlueprintCallable)
 	void Highlight();
 
-	UFUNCTION(BlueprintImplementableEvent)
+	UFUNCTION(BlueprintImplementableEvent, BlueprintCallable)
 	void UnHighlight();
 
 	UFUNCTION(BlueprintCallable, BlueprintPure)

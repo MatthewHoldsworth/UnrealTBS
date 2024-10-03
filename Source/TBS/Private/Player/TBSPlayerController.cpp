@@ -33,7 +33,7 @@ void ATBSPlayerController::SelectedAbility(FGameplayAbilitySpecHandle AbilitySel
 	ATBSCharacter* TBSCharacter = Cast<ATBSCharacter>(SelectedEntity.GetObject());
 	AGridManager* GridManager = Cast<ATBSGameModeBase>(GetWorld()->GetAuthGameMode())->GridManager;
 	const UTBSGameplayAbility* TBSAbility = Cast<UTBSGameplayAbility>(UAbilitySystemBlueprintLibrary::GetGameplayAbilityFromSpecHandle(TBSCharacter->GetAbilitySystemComponent(), AbilitySelected, t));
-
+	
 	AbilityRadius = TBSAbility->Radius;
 	TilesInRange = GridManager->GetTilesInRange(SelectedEntity->EntityLocation, TBSAbility->Range);
 	GridManager->CalculateDistances(SelectedEntity->EntityLocation, TilesInRange);

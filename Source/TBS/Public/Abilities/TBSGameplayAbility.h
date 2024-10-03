@@ -17,6 +17,27 @@ enum ETargetTypes
 	Self,
 	Last
 };
+
+USTRUCT(BlueprintType)
+struct FTargetParams
+{
+	GENERATED_BODY()
+	
+	UPROPERTY(EditDefaultsOnly, BlueprintReadWrite)
+	TEnumAsByte<ETargetTypes> ValidTargets;
+	
+	UPROPERTY(EditDefaultsOnly, BlueprintReadWrite)
+	bool bFriendlyFire = false;
+	
+	UPROPERTY(EditDefaultsOnly, BlueprintReadWrite)
+	bool bTargetsAllies = false;
+	
+	UPROPERTY(EditDefaultsOnly, BlueprintReadWrite)
+	bool bTargetsEnemies = false;
+	
+	UPROPERTY(EditDefaultsOnly, BlueprintReadWrite)
+	bool bCanTargetSelf = false;
+};
 /**
  * 
  */
@@ -37,9 +58,12 @@ public:
 	UPROPERTY(EditDefaultsOnly, BlueprintReadWrite)
 	bool bHasPath;
 	
-	UPROPERTY(EditDefaultsOnly, BlueprintReadWrite)
-	TEnumAsByte<ETargetTypes> ValidTargets;
+	// UPROPERTY(EditDefaultsOnly, BlueprintReadWrite)
+	// TEnumAsByte<ETargetTypes> ValidTargets;
 
+	UPROPERTY(EditDefaultsOnly, BlueprintReadWrite)
+	FTargetParams TargetParameters;
+	
 	UFUNCTION(BlueprintImplementableEvent, BlueprintCallable)
 	void InitAbilityInfo(UTBSAbilitySystemComponent* AbilitySystemComponent) const;
 	

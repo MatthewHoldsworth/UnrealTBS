@@ -37,4 +37,7 @@ public:
 	
 	//UPROPERTY(BlueprintReadOnly, Category="Entity")
 	TObjectPtr<ATileActor> EntityLocation;
+
+	//UPROPERTY(BlueprintReadOnly, Category="Entity")
+	int16 TeamNumber;
 };
