@@ -36,6 +36,9 @@ public:
 
 	UPROPERTY(BlueprintReadWrite, Category= "Selected Ability")
 	bool bIsAbilitySelected;
+
+	UFUNCTION(BlueprintCallable, Category= "Selected Ability")
+	void RegenerateTilesInRange();
 	
 	UPROPERTY(BlueprintReadWrite)
 	TScriptInterface<IEntityInterface> SelectedEntity;

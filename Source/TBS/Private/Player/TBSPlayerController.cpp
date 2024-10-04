@@ -14,7 +14,7 @@
 #include "Grid/Tile/TileActor.h"
 #include "Interfaces/EntityInterface.h"
 
-ATBSPlayerController::ATBSPlayerController()
+ATBSPlayerController::ATBSPlayerController(): bIsAbilitySelected(false), AbilityRadius(0)
 {
 	bShowMouseCursor = true;
 	bEnableClickEvents = true;
@@ -24,20 +24,32 @@ ATBSPlayerController::ATBSPlayerController()
 	//Cast<ATBSGameStateBase>(GetWorld()->GetGameState())->CombatStateChanged;
 }
 
-void ATBSPlayerController::SelectedAbility(FGameplayAbilitySpecHandle AbilitySelected)
+void ATBSPlayerController::RegenerateTilesInRange()
 {
-	PlayerSelectedAbility = AbilitySelected;
-	bIsAbilitySelected = true;
-	
+	if(!PlayerSelectedAbility.IsValid())
+		return;
 	bool t = true;
-	ATBSCharacter* TBSCharacter = Cast<ATBSCharacter>(SelectedEntity.GetObject());
+	const ATBSCharacter* TBSCharacter = Cast<ATBSCharacter>(SelectedEntity.GetObject());
 	AGridManager* GridManager = Cast<ATBSGameModeBase>(GetWorld()->GetAuthGameMode())->GridManager;
-	const UTBSGameplayAbility* TBSAbility = Cast<UTBSGameplayAbility>(UAbilitySystemBlueprintLibrary::GetGameplayAbilityFromSpecHandle(TBSCharacter->GetAbilitySystemComponent(), AbilitySelected, t));
+	const UTBSGameplayAbility* TBSAbility = Cast<UTBSGameplayAbility>(UAbilitySystemBlueprintLibrary::GetGameplayAbilityFromSpecHandle(TBSCharacter->GetAbilitySystemComponent(), PlayerSelectedAbility, t));
+
+	GridManager->RemoveHighlightTiles(TilesInRange);
+	GridManager->RemoveHighlightTiles(TilesInAbilityRadius);
+
+	TilesInAbilityRadius.Empty();
 	
 	AbilityRadius = TBSAbility->Radius;
 	TilesInRange = GridManager->GetTilesInRange(SelectedEntity->EntityLocation, TBSAbility->Range);
 	GridManager->CalculateDistances(SelectedEntity->EntityLocation, TilesInRange);
 	GridManager->AddHighlightTiles(TilesInRange);
+}
+
+void ATBSPlayerController::SelectedAbility(FGameplayAbilitySpecHandle AbilitySelected)
+{
+	PlayerSelectedAbility = AbilitySelected;
+	bIsAbilitySelected = true;
+	
+	RegenerateTilesInRange();
 	//GridManager->SetHighlightTiles(TilesInRange);
 }
 
