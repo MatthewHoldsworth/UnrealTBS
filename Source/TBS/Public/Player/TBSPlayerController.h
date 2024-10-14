@@ -72,7 +72,13 @@ protected:
 	
 	UPROPERTY(BlueprintReadWrite, VisibleAnywhere, Category= "Selected Ability")
 	TArray<ATileActor*> TilesInAbilityRadius;
-	
+
+	UPROPERTY(BlueprintReadWrite, VisibleAnywhere, Category= "Selected Ability")
+	TObjectPtr<ATileActor> HoveredTile;
+
+	UPROPERTY(BlueprintReadWrite, VisibleAnywhere, Category= "Selected Ability")
+	TScriptInterface<IEntityInterface> HoveredEntity;
+
 	UPROPERTY(BlueprintReadWrite, VisibleAnywhere, Category= "Selected Ability")
 	int32 AbilityRadius;
 };

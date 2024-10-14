@@ -11,11 +11,12 @@ class UTBSAbilitySystemComponent;
 UENUM(BlueprintType)
 enum ETargetTypes
 {
-	Any,
-	Entity,
-	Tile,
 	Self,
-	Last
+	Entities,
+	Allies,
+	Enemies,
+	Tiles,
+	Any
 };
 
 USTRUCT(BlueprintType)
@@ -27,14 +28,14 @@ struct FTargetParams
 	TEnumAsByte<ETargetTypes> ValidTargets;
 	
 	UPROPERTY(EditDefaultsOnly, BlueprintReadWrite)
-	bool bFriendlyFire = false;
+	bool bAffectsAllies = false;
 	
 	UPROPERTY(EditDefaultsOnly, BlueprintReadWrite)
-	bool bTargetsAllies = false;
+	bool bAffectsEnemies = false;
 	
 	UPROPERTY(EditDefaultsOnly, BlueprintReadWrite)
-	bool bTargetsEnemies = false;
-	
+	bool bAffectsTiles = false;
+	//Is Last
 	UPROPERTY(EditDefaultsOnly, BlueprintReadWrite)
 	bool bCanTargetSelf = false;
 };

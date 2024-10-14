@@ -8,7 +8,7 @@
 
 class ATileActor;
 // This class does not need to be modified.
-UINTERFACE(meta = (CannotImplementInterfaceInBlueprint))
+UINTERFACE(meta = (CannotImplementInterfaceInBlueprint), BlueprintType)
 class UEntityInterface : public UInterface
 {
 	GENERATED_BODY()
