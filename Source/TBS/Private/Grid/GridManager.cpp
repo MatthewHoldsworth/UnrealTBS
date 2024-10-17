@@ -184,6 +184,7 @@ TArray<ATileActor*> AGridManager::CalculatePath(ATileActor* Start, ATileActor* G
 		}
 		path.Add(ClosestTile);
 		count++;
+		UE_LOG(LogTemp, Warning, TEXT("Count is: " ));
 		//Debug.Log("Dijkstra iteration: " + count);
 	}
 	Algo::Reverse(path);
