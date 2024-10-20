@@ -2,7 +2,11 @@
 
 
 #include "Grid/GridManager.h"
+
+#include "CollisionDebugDrawingPublic.h"
+#include "Kismet/KismetSystemLibrary.h"
 #include "IntVectorTypes.h"
+#include "Actors/SphereRadiusActor.h"
 #include "Components/SphereComponent.h"
 #include "Grid/Tile/TileActor.h"
 
@@ -84,6 +88,19 @@ TArray<ATileActor*> AGridManager::GetTilesInRange(ATileActor* Origin, int Range)
 	//return TArray<ATileActor*>();
 }
 
+TArray<ATileActor*> AGridManager::GetTilesInSphereRange(ATileActor* Origin, int Range)
+{
+	TArray<AActor*> Overlaps;
+	UKismetSystemLibrary::SphereOverlapActors(this, Origin->GetActorLocation() + FVector(0.0f,0.0f,50.0f),
+		Range*100.0f, TArray<TEnumAsByte<EObjectTypeQuery>>(), Origin->GetClass(), TArray<AActor*>(), Overlaps);
+	//DrawSphereOverlap(GetWorld(),Origin->GetActorLocation(),Range*100.0f,Overlaps,0.0f);
+	TArray<ATileActor*> TileActors;
+	for(AActor* it : Overlaps)
+		TileActors.Add(Cast<ATileActor>(it));
+	
+	return TileActors;
+}
+
 void AGridManager::SetHighlightTiles(const TArray<ATileActor*> Tiles)
 {
 	for (const auto& It: HighlightedTiles)
@@ -119,6 +136,11 @@ void AGridManager::AddTileToPath(ATileActor* Tile)
 {
 	if(Tile)
 		TilePath.AddUnique(Tile);
+}
+
+void AGridManager::ShowSphereRadius(ATileActor* Tile, const int32 Radius)
+{
+	SphereRadius->ShowSphereAt(Tile->GetActorLocation() + FVector(0.0f,0.0f,50.0f), Radius*2.0f);
 }
 
 void AGridManager::TileHovered(ATileActor* Tile)

@@ -6,6 +6,7 @@
 #include "GameFramework/Actor.h"
 #include "GridManager.generated.h"
 
+class ASphereRadiusActor;
 class ATileActor;
 class USphereComponent;
 
@@ -38,6 +39,9 @@ public:
 
 	UFUNCTION(BlueprintCallable)
 	TArray<ATileActor*> GetTilesInRange(ATileActor* Origin, int Range);
+	
+	UFUNCTION(BlueprintCallable)
+	TArray<ATileActor*> GetTilesInSphereRange(ATileActor* Origin, int Range);
 
 	UPROPERTY(BlueprintReadWrite)
 	TArray<ATileActor*> TilesOfInterest;
@@ -53,6 +57,9 @@ public:
 	
 	UFUNCTION(BlueprintCallable)
 	void AddTileToPath(ATileActor* Tile);
+	
+	UFUNCTION(BlueprintCallable)
+	void ShowSphereRadius(ATileActor* Tile, int32 Radius);
 	
 	UFUNCTION(BlueprintCallable)
 	void TileHovered(ATileActor* Tile);
@@ -80,6 +87,9 @@ protected:
 	
 	UFUNCTION(BlueprintCallable)
 	void GenerateTileMapNeighbours();
+	
+	UPROPERTY(BlueprintReadWrite)
+	TObjectPtr<ASphereRadiusActor> SphereRadius;
 private:
 	int GridOffsetValueX = 0;
 	int GridOffsetValueY = 0;

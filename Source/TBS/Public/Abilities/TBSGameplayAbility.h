@@ -19,6 +19,14 @@ enum ETargetTypes
 	Any
 };
 
+UENUM(BlueprintType)
+enum ERadiusTypes
+{
+	None,
+	Tile,
+	Sphere
+};
+
 USTRUCT(BlueprintType)
 struct FTargetParams
 {
@@ -26,6 +34,9 @@ struct FTargetParams
 	
 	UPROPERTY(EditDefaultsOnly, BlueprintReadWrite)
 	TEnumAsByte<ETargetTypes> ValidTargets;
+	
+	UPROPERTY(EditDefaultsOnly, BlueprintReadWrite)
+	TEnumAsByte<ERadiusTypes> RadiusType;
 	
 	UPROPERTY(EditDefaultsOnly, BlueprintReadWrite)
 	bool bAffectsAllies = false;
