@@ -46,7 +46,7 @@ struct FTargetParams
 	
 	UPROPERTY(EditDefaultsOnly, BlueprintReadWrite)
 	bool bAffectsTiles = false;
-	//Is Last
+	
 	UPROPERTY(EditDefaultsOnly, BlueprintReadWrite)
 	bool bCanTargetSelf = false;
 };

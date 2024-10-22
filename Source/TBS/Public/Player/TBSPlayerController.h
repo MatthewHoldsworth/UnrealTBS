@@ -4,6 +4,7 @@
 
 #include "CoreMinimal.h"
 #include "GameplayAbilitySpecHandle.h"
+#include "Abilities/TBSGameplayAbility.h"
 #include "GameFramework/PlayerController.h"
 #include "Grid/Tile/TileActor.h"
 #include "TBSPlayerController.generated.h"
@@ -79,6 +80,12 @@ protected:
 	UPROPERTY(BlueprintReadWrite, VisibleAnywhere, Category= "Selected Ability")
 	TScriptInterface<IEntityInterface> HoveredEntity;
 
+	UPROPERTY(BlueprintReadOnly, Category= "Selected Ability")
+	FTargetParams SelectedAbilityTargetParams;
+	
 	UPROPERTY(BlueprintReadWrite, VisibleAnywhere, Category= "Selected Ability")
 	int32 AbilityRadius;
+
+	UPROPERTY(BlueprintReadWrite, VisibleAnywhere, Category= "Selected Ability")
+	bool AbilityHasPath;
 };

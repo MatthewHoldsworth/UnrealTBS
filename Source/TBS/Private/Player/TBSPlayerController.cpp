@@ -39,6 +39,9 @@ void ATBSPlayerController::RegenerateTilesInRange()
 	TilesInAbilityRadius.Empty();
 	
 	AbilityRadius = TBSAbility->Radius;
+	AbilityHasPath = TBSAbility->bHasPath;
+	SelectedAbilityTargetParams = TBSAbility->TargetParameters;
+	
 	TilesInRange = GridManager->GetTilesInRange(SelectedEntity->EntityLocation, TBSAbility->Range);
 	GridManager->CalculateDistances(SelectedEntity->EntityLocation, TilesInRange);
 	GridManager->AddHighlightTiles(TilesInRange);
@@ -48,7 +51,7 @@ void ATBSPlayerController::SelectedAbility(FGameplayAbilitySpecHandle AbilitySel
 {
 	PlayerSelectedAbility = AbilitySelected;
 	bIsAbilitySelected = true;
-
+	
 	RegenerateTilesInRange();
 	//GridManager->SetHighlightTiles(TilesInRange);
 }
