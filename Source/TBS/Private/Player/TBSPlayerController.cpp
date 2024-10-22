@@ -56,6 +56,21 @@ void ATBSPlayerController::SelectedAbility(FGameplayAbilitySpecHandle AbilitySel
 	//GridManager->SetHighlightTiles(TilesInRange);
 }
 
+void ATBSPlayerController::ClearAbility()
+{
+	AbilityRadius = 0;
+	AbilityHasPath = false;
+	SelectedAbilityTargetParams = FTargetParams();
+
+	AGridManager* GridManager = Cast<ATBSGameModeBase>(GetWorld()->GetAuthGameMode())->GridManager;
+	GridManager->RemoveHighlightTiles(TilesInRange);
+	GridManager->RemoveHighlightTiles(TilesInAbilityRadius);
+
+	TilesInRange.Empty();
+	TilesInAbilityRadius.Empty();
+	//AbilityPath.Empty();
+}
+
 TScriptInterface<IEntityInterface> ATBSPlayerController::GetEntityUnderCursor(bool bSelectEntity) const
 {
 	if(FHitResult HitResult; GetHitResultUnderCursor(ECC_WorldDynamic,false,HitResult))

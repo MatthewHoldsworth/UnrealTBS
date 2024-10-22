@@ -49,6 +49,9 @@ public:
 	
 	UFUNCTION(BlueprintCallable)
 	void SelectedAbility(FGameplayAbilitySpecHandle AbilitySelected);
+	
+	UFUNCTION(BlueprintCallable)
+	void ClearAbility();
 protected:
 	UFUNCTION(BlueprintCallable, BlueprintPure)
 	TScriptInterface<IEntityInterface> GetEntityUnderCursor(bool bSelectEntity) const;
