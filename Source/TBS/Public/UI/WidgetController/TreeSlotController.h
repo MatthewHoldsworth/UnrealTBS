@@ -71,19 +71,7 @@ class TBS_API UTreeSlotController : public UTBSWidgetController
 {
 	GENERATED_BODY()
 public:
-	
-	UPROPERTY(BlueprintReadWrite, Meta = (ExposeOnSpawn = true))
-	bool HasUnlocked;
-	
 	UPROPERTY(BlueprintReadWrite, Meta = (ExposeOnSpawn = true))
 	FTreeSlotParams TreeSlotParams;
 	
-	UPROPERTY(BlueprintReadWrite, Meta = (ExposeOnSpawn = true))
-	bool CanUnlock;
-	
-	UPROPERTY(BlueprintReadWrite, Meta = (ExposeOnSpawn = true))
-	bool StartingPoint;
-
-	UPROPERTY(BlueprintReadWrite, Meta = (ExposeOnSpawn = true))
-	FIntVector TreePosition;
 };

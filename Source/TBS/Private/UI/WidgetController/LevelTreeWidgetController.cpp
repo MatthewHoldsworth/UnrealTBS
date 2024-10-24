@@ -11,6 +11,6 @@ void ULevelTreeWidgetController::ShowAllAvailable()
 	for (auto Element : TreeSlotsMap)
 	{
 		TreeSlotController = Cast<UTreeSlotController>(Element.Value.Get()->WidgetController);
-		Cast<UTreeSlotController>(Element.Value.Get()->WidgetController)->StartingPoint;
+		TreeSlotController->TreeSlotParams.StartingPoint;
 	}
 }
