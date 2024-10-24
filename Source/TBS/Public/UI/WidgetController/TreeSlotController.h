@@ -7,6 +7,8 @@
 #include "UI/WidgetController/TBSWidgetController.h"
 #include "TreeSlotController.generated.h"
 
+class UGameplayEffect;
+
 USTRUCT(BlueprintType, Blueprintable)
 struct FTreeSlot : public FTableRowBase
 {
@@ -38,17 +40,26 @@ struct FTreeSlotParams
 {
 	GENERATED_BODY()
 	
-	UPROPERTY(EditAnywhere)
+	UPROPERTY(EditAnywhere, BlueprintReadOnly)
 	bool HasUnlocked;
 	
-	UPROPERTY(EditAnywhere)
+	UPROPERTY(EditAnywhere, BlueprintReadOnly)
 	bool CanUnlock;
 	
-	UPROPERTY(EditAnywhere)
+	UPROPERTY(EditAnywhere, BlueprintReadOnly)
 	bool StartingPoint;
 
-	UPROPERTY(EditAnywhere)
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	FIntVector TreePosition;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	TSubclassOf<UGameplayEffect> GameplayEffectClass;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	FName Name;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	FText Description;
 };
 
 
@@ -60,8 +71,12 @@ class TBS_API UTreeSlotController : public UTBSWidgetController
 {
 	GENERATED_BODY()
 public:
+	
 	UPROPERTY(BlueprintReadWrite, Meta = (ExposeOnSpawn = true))
 	bool HasUnlocked;
+	
+	UPROPERTY(BlueprintReadWrite, Meta = (ExposeOnSpawn = true))
+	FTreeSlotParams TreeSlotParams;
 	
 	UPROPERTY(BlueprintReadWrite, Meta = (ExposeOnSpawn = true))
 	bool CanUnlock;
